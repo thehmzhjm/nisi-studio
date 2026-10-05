@@ -39,7 +39,7 @@ const T = {
 en:{
  demo:"Demo website. Kyma Car Rentals is a sample business created to show what we build.",
  navHome:"Home", navFleet:"Fleet & prices", navBook:"Book now", navPolicies:"Terms & privacy", navContact:"Contact",
- seats:"seats", bags:"bags", auto:"Automatic", ac:"A/C", day:"/day", from:"from", choose:"Book this car", popular:"Most booked", free:"free",
+ tagL:"SUVs from", seats:"seats", bags:"bags", auto:"Automatic", ac:"A/C", day:"/day", from:"from", choose:"Book this car", popular:"Most booked", free:"free",
  fTag:"Car rental in Limassol and at Larnaca & Paphos airports.", fPages:"Pages", fContact:"Contact", fHours:"Office 08:00–21:00 · Roadside help 24/7", made:"Website by Nisi Studio",
  // home
  eyebrow:"Car rental · Limassol · Larnaca & Paphos airports", h1:"Land. Get the keys. <span>Drive the coast.</span>",
@@ -90,7 +90,7 @@ en:{
 el:{
  demo:"Δοκιμαστική ιστοσελίδα. Η Kyma Car Rentals είναι παράδειγμα επιχείρησης.",
  navHome:"Αρχική", navFleet:"Στόλος & τιμές", navBook:"Κράτηση", navPolicies:"Όροι & απόρρητο", navContact:"Επικοινωνία",
- seats:"θέσεις", bags:"βαλίτσες", auto:"Αυτόματο", ac:"A/C", day:"/ημέρα", from:"από", choose:"Κράτηση", popular:"Πιο δημοφιλές", free:"δωρεάν",
+ tagL:"SUV από", seats:"θέσεις", bags:"βαλίτσες", auto:"Αυτόματο", ac:"A/C", day:"/ημέρα", from:"από", choose:"Κράτηση", popular:"Πιο δημοφιλές", free:"δωρεάν",
  fTag:"Ενοικίαση αυτοκινήτων στη Λεμεσό και στα αεροδρόμια Λάρνακας & Πάφου.", fPages:"Σελίδες", fContact:"Επικοινωνία", fHours:"Γραφείο 08:00–21:00 · Οδική βοήθεια 24/7", made:"Ιστοσελίδα από Nisi Studio",
  eyebrow:"Ενοικίαση αυτοκινήτων · Λεμεσός · Αεροδρόμια Λάρνακας & Πάφου", h1:"Προσγείωση. Κλειδιά. <span>Οδήγηση στην ακτή.</span>",
  lead:"Σας περιμένουμε στις αφίξεις με καθαρό αυτοκίνητο και γεμάτο ρεζερβουάρ. Χωρίς κρυφές χρεώσεις, χωρίς ουρές.",
@@ -136,7 +136,7 @@ el:{
 ru:{
  demo:"Демо-сайт. Kyma Car Rentals — пример бизнеса для портфолио.",
  navHome:"Главная", navFleet:"Автопарк и цены", navBook:"Бронь", navPolicies:"Условия", navContact:"Контакты",
- seats:"мест", bags:"сумки", auto:"Автомат", ac:"Кондиционер", day:"/день", from:"от", choose:"Забронировать", popular:"Чаще всего", free:"бесплатно",
+ tagL:"Кроссоверы от", seats:"мест", bags:"сумки", auto:"Автомат", ac:"Кондиционер", day:"/день", from:"от", choose:"Забронировать", popular:"Чаще всего", free:"бесплатно",
  fTag:"Аренда авто в Лимассоле и в аэропортах Ларнаки и Пафоса.", fPages:"Страницы", fContact:"Контакты", fHours:"Офис 08:00–21:00 · Помощь на дороге 24/7", made:"Сайт от Nisi Studio",
  eyebrow:"Аренда авто · Лимассол · аэропорты Ларнаки и Пафоса", h1:"Прилетели. Ключи. <span>Вперёд по побережью.</span>",
  lead:"Встречаем в зоне прилёта на чистой машине с полным баком. Без скрытых платежей и очередей.",
