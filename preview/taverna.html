@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taverna Alati</title>
+<meta name="description" content="Family fish taverna on Mackenzie Beach, Larnaca. Fresh fish on the grill, fish meze, tables by the sea. Reserve on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vollkorn:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Fira+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: seaside taverna. Full-bleed terrace photo hero with a chalkboard "today's catch" card, signature dishes in photos, a menu typeset like a printed card with dotted leaders, table request form that becomes a WhatsApp message */
+:root{
+  --bg:#fbf8f1;
+  --surface:#ffffff;
+  --ink:#10283a;
+  --muted:#5b6a73;
+  --line:#e7dfcf;
+  --sea:#1b6f8f;
+  --lemon:#f4c430;
+  --tomato:#c4452f;
+  --deep:#0d2233;
+  --on-deep:#f6f1e4;
+  --display:"Vollkorn", Georgia, serif;
+  --body:"Fira Sans", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1722; --surface:#12222f; --ink:#f1ece0; --muted:#a3b2bb; --line:#22384a;
+    --sea:#5db4d4; --lemon:#f4c430; --tomato:#e87a62; --deep:#081520; --on-deep:#f6f1e4; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1722; --surface:#12222f; --ink:#f1ece0; --muted:#a3b2bb; --line:#22384a;
+  --sea:#5db4d4; --lemon:#f4c430; --tomato:#e87a62; --deep:#081520; --on-deep:#f6f1e4; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;overflow-x:hidden}
+.wrap{max-width:1120px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--tomato);outline-offset:3px;border-radius:4px}
+[hidden]{display:none!important}
+
+.demo-bar{margin-inline:-16px;padding:6px 16px;background:var(--lemon);color:#2b2200;font-size:13px;font-weight:700;text-align:center}
+
+.head{position:sticky;top:0;z-index:10;margin-inline:-16px;padding-inline:16px;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.head .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.logo{font-family:var(--display);font-weight:800;font-size:27px;text-decoration:none;display:flex;align-items:baseline;gap:8px;line-height:1}
+.logo small{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:2px}
+.nav a{text-decoration:none;font-weight:500;padding:8px 14px;border-radius:999px;color:var(--muted)}
+.nav a:hover{color:var(--ink);background:var(--surface)}
+@media (max-width:860px){.nav{display:none}}
+.tools{display:flex;gap:8px;align-items:center}
+.langs{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--surface)}
+.langs button{border:0;background:transparent;color:var(--muted);font-weight:700;font-size:12px;letter-spacing:.08em;padding:6px 9px;border-radius:999px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-tomato{background:var(--tomato);color:#fff}
+.btn-light{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.55);backdrop-filter:blur(6px)}
+.btn-wa{background:#25d366;color:#08341b;width:100%}
+.head .btn{padding:10px 18px;font-size:15px}
+@media (max-width:520px){.head .btn{display:none}}
+
+/* hero */
+.hero{position:relative;margin-inline:-16px;padding-inline:16px;min-height:clamp(540px,82vh,760px);display:grid;align-items:end;color:#fff;background:linear-gradient(180deg,#5aa6c4,#1b6f8f 55%,#0d2233);overflow:hidden}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,34,51,.25) 0%,rgba(13,34,51,.1) 35%,rgba(13,34,51,.82) 100%)}
+.hero .wrap{position:relative;z-index:1;width:100%;display:grid;gap:28px;padding-block:40px 44px;align-items:end}
+@media (min-width:900px){.hero .wrap{grid-template-columns:1.3fr .7fr}}
+.eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--lemon)}
+.hero h1{font-size:clamp(44px,8.4vw,92px);font-weight:800;margin-top:12px;letter-spacing:-.01em}
+.hero h1 em{font-weight:500}
+.hero .lead{margin-top:16px;max-width:46ch;font-size:19px;color:rgba(255,255,255,.9)}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:15px;background:rgba(13,34,51,.5);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;backdrop-filter:blur(6px)}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.22)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+/* chalkboard */
+.board{justify-self:end;width:100%;max-width:300px;background:#1d2a26;color:#f3efe2;border:8px solid #6b4a2f;border-radius:6px;padding:18px 20px;transform:rotate(-2deg);box-shadow:0 20px 40px rgba(0,0,0,.35);font-family:var(--display)}
+@media (max-width:899px){.board{justify-self:start;transform:rotate(-1deg)}.hero .wrap{padding-bottom:64px}}
+.board b{display:block;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--lemon);font-family:var(--body);font-weight:700}
+.board ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-style:italic;font-size:21px}
+.board li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed rgba(243,239,226,.3);padding-bottom:4px}
+.board li span:last-child{font-style:normal;font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.board small{display:block;margin-top:10px;font-family:var(--body);font-size:12.5px;color:rgba(243,239,226,.7)}
+
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:-26px;position:relative;z-index:2;box-shadow:0 20px 44px rgba(16,40,58,.12)}
+.strip>div{background:var(--surface);padding:16px 18px}
+.strip span{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.strip b{font-family:var(--display);font-size:20px;font-variant-numeric:tabular-nums}
+
+section{padding-block:68px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px;margin-bottom:28px}
+.sec-head h2{font-size:clamp(36px,6.2vw,60px);font-weight:800}
+.sec-head h2 em{font-weight:500;color:var(--tomato)}
+.sec-head p{color:var(--muted);max-width:42ch}
+.kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--sea);font-weight:700;margin-bottom:10px}
+
+/* signature dishes */
+.dishes{display:grid;gap:14px;grid-template-columns:repeat(4,1fr)}
+@media (max-width:900px){.dishes{grid-template-columns:1fr 1fr}}
+.dish{position:relative;aspect-ratio:3/4;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#e8c9a0,#b9623f);color:#fff}
+.dish img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dish::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,34,51,0) 45%,rgba(13,34,51,.85))}
+.dish div{position:absolute;left:14px;right:14px;bottom:12px;z-index:1}
+.dish b{display:block;font-family:var(--display);font-size:22px;line-height:1.1}
+.dish span{font-size:15px;opacity:.92;font-variant-numeric:tabular-nums}
+
+/* menu */
+.menu-bg{margin-inline:-16px;padding-inline:16px;background:var(--surface);border-block:1px solid var(--line)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:26px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:10px 18px;font-weight:700;font-size:16px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.items{display:grid;gap:20px 56px}
+@media (min-width:820px){.items{grid-template-columns:1fr 1fr}}
+.item{min-width:0}
+.row{display:flex;align-items:baseline;gap:10px}
+.row h3{font-size:22px;font-weight:700;min-width:0}
+.row i{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+.row b{font-family:var(--display);font-size:21px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.item p{color:var(--muted);font-size:15.5px;margin-top:2px}
+.tag{display:inline-block;font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px;vertical-align:middle;margin-left:6px}
+.tag.v{background:#e3efd9;color:#35561f}
+.tag.h{background:#fde8b4;color:#6b4a00}
+.meze{margin-top:34px;display:grid;gap:16px;background:var(--deep);color:var(--on-deep);border-radius:22px;padding:24px;align-items:center}
+@media (min-width:820px){.meze{grid-template-columns:1fr auto}}
+.meze h3{font-size:30px;font-weight:800}
+.meze p{color:rgba(246,241,228,.8);margin-top:6px;max-width:60ch}
+.meze b{font-family:var(--display);font-size:44px;color:var(--lemon);line-height:1;font-variant-numeric:tabular-nums}
+.meze span{display:block;font-size:14px;color:rgba(246,241,228,.75)}
+.legend{margin-top:22px;font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+
+/* gallery */
+.gallery{display:grid;gap:12px;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto}
+.gallery figure{margin:0;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#9fd0e0,#1b6f8f);min-height:180px}
+.gallery figure:first-child{grid-row:1/3}
+.gallery img{width:100%;height:100%;object-fit:cover}
+@media (max-width:640px){.gallery{grid-template-columns:1fr 1fr}.gallery figure:first-child{grid-column:1/3;grid-row:auto;aspect-ratio:16/10}.gallery figure{aspect-ratio:1}}
+@media (min-width:641px){.gallery{height:520px}}
+
+/* reserve */
+.book{display:grid;gap:28px}
+@media (min-width:900px){.book{grid-template-columns:1.1fr .9fr;gap:44px}}
+form{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;box-shadow:0 20px 50px rgba(16,40,58,.08)}
+.frow{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:460px){.frow{grid-template-columns:1fr}}
+label,.lab{display:grid;gap:6px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-width:0;text-transform:none;letter-spacing:0}
+textarea{resize:vertical;min-height:64px}
+.stepper{display:flex;align-items:center;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:6px}
+.stepper button{width:38px;height:38px;border-radius:9px;border:0;background:var(--surface);color:var(--ink);font-size:20px;cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.stepper output{flex:1;text-align:center;font:700 18px var(--body);color:var(--ink);font-variant-numeric:tabular-nums;text-transform:none;letter-spacing:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:5px}
+.seg label{display:block;text-transform:none;letter-spacing:0}
+.seg input{position:absolute;opacity:0;width:0;height:0}
+.seg span{display:block;text-align:center;padding:10px 8px;border-radius:9px;font:700 15px var(--body);color:var(--muted);cursor:pointer}
+.seg input:checked+span{background:var(--ink);color:var(--bg)}
+.seg input:focus-visible+span{outline:2px solid var(--tomato);outline-offset:2px}
+.preview{font-size:14.5px;background:#d9fdd3;color:#14301f;border-radius:14px 14px 14px 4px;padding:14px;white-space:pre-wrap}
+.small{font-size:13px;color:var(--muted)}
+.info{display:grid;gap:16px;align-content:start}
+.info .ph{aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#9fd0e0,#1b6f8f)}
+.info .ph img{width:100%;height:100%;object-fit:cover}
+.info dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 22px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
+.info dt{color:var(--muted);font-size:14px}
+.info dd{margin:0;font-variant-numeric:tabular-nums}
+.maplink{font-weight:700;color:var(--sea)}
+
+.reviews{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.reviews blockquote{margin:0;border-top:2px solid var(--ink);padding-top:16px;display:grid;gap:8px}
+.stars{color:var(--tomato);letter-spacing:3px}
+.reviews p{font-family:var(--display);font-style:italic;font-size:21px;line-height:1.35}
+.reviews cite{font-style:normal;color:var(--muted);font-size:15px}
+.sample{font-size:13px;color:var(--muted);margin-top:16px}
+
+footer{padding-block:36px 110px;border-top:1px solid var(--line);display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));color:var(--muted);font-size:15px}
+footer b{display:block;color:var(--ink);font-family:var(--display);font-size:20px;margin-bottom:4px}
+
+.bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9;display:grid;grid-template-columns:1fr auto;gap:8px}
+.bar a{text-decoration:none;text-align:center;font-weight:700;padding:14px 18px;border-radius:999px;box-shadow:0 12px 28px rgba(0,0,0,.28)}
+.bar a:first-child{background:var(--tomato);color:#fff}
+.bar a:last-child{background:#25d366;color:#08341b}
+@media (min-width:861px){.bar{left:auto;right:20px;grid-template-columns:auto}.bar a:first-child{display:none}}
+@media (prefers-reduced-motion:no-preference){
+  .btn{transition:transform .18s}.btn:hover{transform:translateY(-2px)}
+  .dish img{transition:transform .6s}.dish:hover img{transform:scale(1.06)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="demo-bar" data-i18n="demo">Demo website. Taverna Alati is a sample business created to show what we build.</div>
+
+<header class="head">
+  <div class="wrap">
+    <a class="logo" href="#top">Alati <small data-i18n="logoS">fish taverna</small></a>
+    <nav class="nav" aria-label="Main"><a href="#menu" data-i18n="navMenu">Menu</a><a href="#reserve" data-i18n="navRes">Reserve</a><a href="#find" data-i18n="navFind">Find us</a></nav>
+    <div class="tools">
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="el" aria-pressed="false">ΕΛ</button><button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+      <a class="btn btn-tomato" href="#reserve" data-i18n="cta1">Reserve a table</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <img src="https://images.unsplash.com/photo-1601581875309-fafbf2d3ed3a?auto=format&fit=crop&w=1800&h=1100&q=72" alt="Tables on a stone terrace beside the sea" onerror="this.remove()">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-i18n="eyebrow">Mackenzie Beach · Larnaca · since 1987</div>
+      <h1 data-i18n="h1" data-html>Fresh fish, <em>ten steps from the sea.</em></h1>
+      <p class="lead" data-i18n="lead">A family taverna where the boats still deliver to the back door. Today's catch on charcoal, meze for the whole table, and a carafe of cold white.</p>
+      <div class="status"><span class="dot"></span><span data-i18n="open">Open today · 12:00–23:00</span></div>
+      <div class="ctas">
+        <a class="btn btn-tomato" href="#reserve" data-i18n="cta1">Reserve a table</a>
+        <a class="btn btn-light" href="#menu" data-i18n="cta2">See the menu</a>
+      </div>
+    </div>
+    <aside class="board" aria-label="Today's catch">
+      <b data-i18n="catchT">Today's catch</b>
+      <ul>
+        <li><span data-i18n="c1">Sea bream</span><span>€58/kg</span></li>
+        <li><span data-i18n="c2">Red mullet</span><span>€62/kg</span></li>
+        <li><span data-i18n="c3">Octopus</span><span>€16</span></li>
+      </ul>
+      <small data-i18n="catchN">Landed this morning at Larnaca fishing shelter.</small>
+    </aside>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="strip">
+    <div><span data-i18n="st1">Open daily</span><b>12:00–23:00</b></div>
+    <div><span data-i18n="st2">Kitchen closes</span><b>22:30</b></div>
+    <div><span data-i18n="st3">Fish meze</span><b data-i18n="st3v">€26 per person</b></div>
+    <div><span data-i18n="st4">Tables</span><b data-i18n="st4v">Terrace and inside</b></div>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <div><div class="kicker" data-i18n="sigK">From the charcoal</div><h2 data-i18n="sigH" data-html>What people <em>come back for</em></h2></div>
+      <p data-i18n="sigP">Four plates that have been on the menu since the first summer.</p>
+    </div>
+    <div class="dishes">
+      <div class="dish"><img src="https://images.unsplash.com/photo-1764397514747-8272f2da3f36?auto=format&fit=crop&w=700&h=930&q=70" alt="" loading="lazy" onerror="this.remove()"><div><b data-i18n="d1">Grilled octopus</b><span>€16</span></div></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1665401015549-712c0dc5ef85?auto=format&fit=crop&w=700&h=930&q=70" alt="" loading="lazy" onerror="this.remove()"><div><b data-i18n="d2">Whole sea bream</b><span>€58/kg</span></div></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1778600731531-7d836a32704c?auto=format&fit=crop&w=700&h=930&q=70" alt="" loading="lazy" onerror="this.remove()"><div><b data-i18n="d3">Fried calamari</b><span>€13</span></div></div>
+      <div class="dish"><img src="https://images.unsplash.com/photo-1769481614068-47cfb4d1f125?auto=format&fit=crop&w=700&h=930&q=70" alt="" loading="lazy" onerror="this.remove()"><div><b data-i18n="d4">Village salad</b><span>€8</span></div></div>
+    </div>
+  </section>
+</div>
+
+<div class="menu-bg" id="menu">
+<div class="wrap">
+  <section>
+    <div class="sec-head">
+      <div><div class="kicker" data-i18n="menuK">The menu</div><h2 data-i18n="menuH">Eat like the table next to you</h2></div>
+      <p data-i18n="menuP">Whole fish is priced by weight. We bring it to your table before it goes on the grill.</p>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div class="items" id="items"></div>
+    <div class="meze">
+      <div><h3 data-i18n="mezeH">Fish meze</h3><p data-i18n="mezeP">Fourteen small plates brought in rounds: dips, salad, calamari, octopus, prawns, the day's fried fish and fruit to finish. Minimum two people.</p></div>
+      <div><b>€26</b><span data-i18n="mezeS">per person</span></div>
+    </div>
+    <div class="legend"><span><span class="tag v" style="margin-left:0">V</span> <span data-i18n="legV">Vegetarian</span></span><span><span class="tag h" style="margin-left:0" data-i18n="tagH">House</span> <span data-i18n="legH">The dishes we are known for</span></span><span data-i18n="legA">Allergies? Tell us when you book.</span></div>
+  </section>
+</div>
+</div>
+
+<div class="wrap">
+  <section>
+    <div class="gallery">
+      <figure><img src="https://images.unsplash.com/photo-1785512329906-3e903e48f0df?auto=format&fit=crop&w=1200&h=1000&q=70" alt="White terrace with lanterns overlooking the sea" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1764397514323-e2fbf55e3091?auto=format&fit=crop&w=800&h=520&q=70" alt="Octopus grilling over hot coals" loading="lazy" onerror="this.remove()"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1782174177190-3c267c3b07e7?auto=format&fit=crop&w=800&h=520&q=70" alt="Table covered with meze plates" loading="lazy" onerror="this.remove()"></figure>
+    </div>
+  </section>
+
+  <section id="reserve" style="padding-top:0">
+    <div class="sec-head">
+      <div><div class="kicker" data-i18n="resK">Reservations</div><h2 data-i18n="resH" data-html>Book a table <em>by the water</em></h2></div>
+      <p data-i18n="resP">Send your request and we confirm on WhatsApp, usually within fifteen minutes.</p>
+    </div>
+    <div class="book">
+      <form id="form" novalidate>
+        <div class="frow">
+          <label><span data-i18n="fName">Your name</span><input id="f-name" autocomplete="name" value="Anna"></label>
+          <label><span data-i18n="fPhone">Phone</span><input id="f-phone" type="tel" autocomplete="tel" value="+357 99 123456"></label>
+        </div>
+        <div class="frow">
+          <label><span data-i18n="fDate">Date</span><input id="f-date" type="date"></label>
+          <label><span data-i18n="fTime">Time</span><select id="f-time"></select></label>
+        </div>
+        <div class="frow">
+          <div class="lab"><span data-i18n="fGuests">Guests</span><div class="stepper"><button type="button" id="g-minus" aria-label="Fewer guests">−</button><output id="guests">4</output><button type="button" id="g-plus" aria-label="More guests">+</button></div></div>
+          <div class="lab"><span data-i18n="fSeat">Seating</span><div class="seg"><label><input type="radio" name="seat" id="seat-t" value="t" checked><span data-i18n="seatT">Terrace</span></label><label><input type="radio" name="seat" id="seat-i" value="i"><span data-i18n="seatI">Inside</span></label></div></div>
+        </div>
+        <label><span data-i18n="fNote">Anything we should know?</span><textarea id="f-note" data-i18n-ph="notePh" placeholder="Birthday, high chair, allergies"></textarea></label>
+        <div><div class="small" style="margin-bottom:6px" data-i18n="prevL">Message that will be sent:</div><div class="preview" id="preview"></div></div>
+        <a class="btn btn-wa" id="send" href="#" target="_blank" rel="noopener" data-i18n="send">Send on WhatsApp</a>
+        <p class="small" data-i18n="big">Tables of 10 or more: please message us a day ahead.</p>
+      </form>
+      <div class="info" id="find">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1781484589468-86578ea42813?auto=format&fit=crop&w=1000&h=625&q=70" alt="Restaurant tables by the blue sea" loading="lazy" onerror="this.remove()"></div>
+        <dl>
+          <dt data-i18n="iHours">Hours</dt><dd data-i18n="iHoursV">Every day 12:00–23:00</dd>
+          <dt data-i18n="iAddr">Address</dt><dd>14 Piale Pasa, Mackenzie Beach, Larnaca</dd>
+          <dt>WhatsApp</dt><dd>+357 99 000 000</dd>
+          <dt data-i18n="iPark">Parking</dt><dd data-i18n="iParkV">Free, behind the taverna</dd>
+        </dl>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Mackenzie+Beach+Larnaca" target="_blank" rel="noopener" data-i18n="map">Open in Google Maps ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sec-head"><div><div class="kicker" data-i18n="revK">Reviews</div><h2 data-i18n="revH">Said at the table</h2></div></div>
+    <div class="reviews">
+      <blockquote><span class="stars">★★★★★</span><p data-i18n="r1">They showed us the fish before grilling it. Best sea bream of the holiday.</p><cite>Guest name</cite></blockquote>
+      <blockquote><span class="stars">★★★★★</span><p data-i18n="r2">We booked on WhatsApp from the airport and the table was waiting on the terrace.</p><cite>Guest name</cite></blockquote>
+      <blockquote><span class="stars">★★★★★</span><p data-i18n="r3">Order the meze and do not eat lunch first.</p><cite>Guest name</cite></blockquote>
+    </div>
+    <p class="sample" data-i18n="sample">Sample reviews. Your real Google reviews appear here.</p>
+  </section>
+
+  <footer>
+    <div><b>Taverna Alati</b><span data-i18n="fTag">Family fish taverna on Mackenzie Beach, Larnaca.</span></div>
+    <div><b data-i18n="iHours">Hours</b><span data-i18n="iHoursV">Every day 12:00–23:00</span><br><span data-i18n="fKitchen">Kitchen closes 22:30</span></div>
+    <div><b>© 2026</b><span data-i18n="made">Website by Nisi Studio</span><br><span data-i18n="credit">Photos: Unsplash</span></div>
+  </footer>
+</div>
+
+<div class="bar"><a href="#reserve" data-i18n="cta1">Reserve a table</a><a id="bar-wa" href="#" target="_blank" rel="noopener">WhatsApp</a></div>
+
+<script>
+const WA="35799000000"; // taverna WhatsApp number, digits only
+const menu=[
+ {id:"meze",t:{en:"Meze & dips",el:"Μεζέδες",ru:"Мезе и закуски"},items:[
+  {n:{en:"Tzatziki",el:"Τζατζίκι",ru:"Дзадзики"},d:{en:"Strained yoghurt, cucumber, garlic, dried mint.",el:"Στραγγιστό γιαούρτι, αγγούρι, σκόρδο, δυόσμος.",ru:"Густой йогурт, огурец, чеснок, сушёная мята."},p:"€4.50",g:"v"},
+  {n:{en:"Taramosalata",el:"Ταραμοσαλάτα",ru:"Тарамасалата"},d:{en:"Cured roe whipped with lemon and olive oil.",el:"Ταραμάς χτυπημένος με λεμόνι και ελαιόλαδο.",ru:"Икра, взбитая с лимоном и оливковым маслом."},p:"€5"},
+  {n:{en:"Grilled halloumi",el:"Χαλλούμι στη σχάρα",ru:"Халуми на гриле"},d:{en:"Village halloumi with tomato and oregano.",el:"Χωριάτικο χαλλούμι με ντομάτα και ρίγανη.",ru:"Деревенский халуми с томатами и орегано."},p:"€7.50",g:"v"},
+  {n:{en:"Hummus",el:"Χούμους",ru:"Хумус"},d:{en:"Chickpeas, tahini, warm pitta.",el:"Ρεβίθια, ταχίνι, ζεστή πίτα.",ru:"Нут, тахини, тёплая пита."},p:"€4.50",g:"v"},
+  {n:{en:"Village sausage",el:"Λουκάνικο χωριάτικο",ru:"Деревенская колбаска"},d:{en:"Wine-cured pork sausage from the grill.",el:"Κρασάτο χοιρινό λουκάνικο στα κάρβουνα.",ru:"Свиная колбаска, выдержанная в вине, с гриля."},p:"€8"}
+ ]},
+ {id:"sea",t:{en:"From the sea",el:"Από τη θάλασσα",ru:"Из моря"},items:[
+  {n:{en:"Grilled octopus",el:"Χταπόδι στα κάρβουνα",ru:"Осьминог на углях"},d:{en:"Sun-dried, charcoal-grilled, oil and vinegar.",el:"Λιαστό, στα κάρβουνα, με λαδόξιδο.",ru:"Вяленый на солнце, на углях, с маслом и уксусом."},p:"€16",g:"h"},
+  {n:{en:"Fried calamari",el:"Καλαμάρι τηγανητό",ru:"Жареные кальмары"},d:{en:"Fresh, floured to order, lemon on the side.",el:"Φρέσκο, αλευρωμένο την ώρα, με λεμόνι.",ru:"Свежие, в муке под заказ, с лимоном."},p:"€13",g:"h"},
+  {n:{en:"Sea bream",el:"Τσιπούρα",ru:"Дорада"},d:{en:"Whole fish on charcoal, with greens and potatoes.",el:"Ολόκληρη στα κάρβουνα, με χόρτα και πατάτες.",ru:"Целая рыба на углях, с зеленью и картофелем."},p:"€58/kg"},
+  {n:{en:"Red mullet",el:"Μπαρμπούνι",ru:"Барабулька"},d:{en:"Pan-fried, the Larnaca way.",el:"Τηγανητό, όπως στη Λάρνακα.",ru:"Жареная на сковороде, по-ларнакски."},p:"€62/kg"},
+  {n:{en:"Prawns saganaki",el:"Γαρίδες σαγανάκι",ru:"Креветки саганаки"},d:{en:"King prawns baked in tomato, feta and ouzo.",el:"Γαρίδες στον φούρνο με ντομάτα, φέτα και ούζο.",ru:"Королевские креветки в томатах с фетой и узо."},p:"€17"}
+ ]},
+ {id:"grill",t:{en:"From the grill",el:"Της σχάρας",ru:"С гриля"},items:[
+  {n:{en:"Pork souvlaki",el:"Σουβλάκι χοιρινό",ru:"Свиной сувлаки"},d:{en:"Two skewers, pitta, salad and chips.",el:"Δύο σουβλάκια, πίτα, σαλάτα και πατάτες.",ru:"Два шампура, пита, салат и картофель."},p:"€12"},
+  {n:{en:"Sheftalia",el:"Σιεφταλιά",ru:"Шефталья"},d:{en:"Cypriot pork parcels with parsley and onion.",el:"Κυπριακή σιεφταλιά με μαϊντανό και κρεμμύδι.",ru:"Кипрские колбаски с петрушкой и луком."},p:"€12",g:"h"},
+  {n:{en:"Chicken souvlaki",el:"Σουβλάκι κοτόπουλο",ru:"Куриный сувлаки"},d:{en:"Marinated in lemon and oregano.",el:"Μαριναρισμένο σε λεμόνι και ρίγανη.",ru:"В маринаде из лимона и орегано."},p:"€12"},
+  {n:{en:"Lamb chops",el:"Παϊδάκια αρνίσια",ru:"Бараньи рёбрышки"},d:{en:"Five chops, charcoal, coarse salt.",el:"Πέντε παϊδάκια, κάρβουνο, χοντρό αλάτι.",ru:"Пять рёбрышек, угли, крупная соль."},p:"€19"}
+ ]},
+ {id:"salad",t:{en:"Salads & sides",el:"Σαλάτες & συνοδευτικά",ru:"Салаты и гарниры"},items:[
+  {n:{en:"Village salad",el:"Χωριάτικη σαλάτα",ru:"Деревенский салат"},d:{en:"Tomato, cucumber, feta, olives, capers.",el:"Ντομάτα, αγγούρι, φέτα, ελιές, κάπαρη.",ru:"Томаты, огурцы, фета, оливки, каперсы."},p:"€8",g:"v"},
+  {n:{en:"Grilled vegetables",el:"Λαχανικά σχάρας",ru:"Овощи на гриле"},d:{en:"Courgette, aubergine, peppers, olive oil.",el:"Κολοκύθι, μελιτζάνα, πιπεριές, ελαιόλαδο.",ru:"Кабачок, баклажан, перец, оливковое масло."},p:"€7",g:"v"},
+  {n:{en:"Hand-cut chips",el:"Πατάτες τηγανητές",ru:"Картофель фри"},d:{en:"Cyprus potatoes, fried in olive oil.",el:"Κυπριακές πατάτες, τηγανισμένες σε ελαιόλαδο.",ru:"Кипрский картофель, жаренный на оливковом масле."},p:"€4",g:"v"}
+ ]},
+ {id:"sweet",t:{en:"Sweets & drinks",el:"Γλυκά & ποτά",ru:"Десерты и напитки"},items:[
+  {n:{en:"Loukoumades",el:"Λουκουμάδες",ru:"Лукумадес"},d:{en:"Honey doughnuts with cinnamon and walnuts.",el:"Με μέλι, κανέλα και καρύδια.",ru:"Пончики с мёдом, корицей и орехами."},p:"€6"},
+  {n:{en:"Mahalepi",el:"Μαχαλεπί",ru:"Махалепи"},d:{en:"Chilled rosewater pudding.",el:"Δροσερό, με ροδόσταγμα.",ru:"Холодный пудинг с розовой водой."},p:"€4.50",g:"v"},
+  {n:{en:"House white, 500 ml",el:"Λευκό χύμα, 500 ml",ru:"Домашнее белое, 500 мл"},d:{en:"Xynisteri from the Limassol hills.",el:"Ξυνιστέρι από τα κρασοχώρια Λεμεσού.",ru:"Ксинистери с холмов Лимассола."},p:"€9"},
+  {n:{en:"Commandaria",el:"Κουμανδαρία",ru:"Коммандария"},d:{en:"A glass of Cyprus's sweet wine.",el:"Ένα ποτήρι κυπριακό γλυκό κρασί.",ru:"Бокал кипрского сладкого вина."},p:"€5"},
+  {n:{en:"Cyprus coffee",el:"Κυπριακός καφές",ru:"Кипрский кофе"},d:{en:"Sketo, metrio or glyko.",el:"Σκέτος, μέτριος ή γλυκός.",ru:"Скето, метрио или глико."},p:"€2.50"}
+ ]}
+];
+const T={
+ en:{demo:"Demo website. Taverna Alati is a sample business created to show what we build.",logoS:"fish taverna",navMenu:"Menu",navRes:"Reserve",navFind:"Find us",cta1:"Reserve a table",cta2:"See the menu",eyebrow:"Mackenzie Beach · Larnaca · since 1987",h1:"Fresh fish, <em>ten steps from the sea.</em>",lead:"A family taverna where the boats still deliver to the back door. Today's catch on charcoal, meze for the whole table, and a carafe of cold white.",open:"Open today · 12:00–23:00",catchT:"Today's catch",c1:"Sea bream",c2:"Red mullet",c3:"Octopus",catchN:"Landed this morning at Larnaca fishing shelter.",st1:"Open daily",st2:"Kitchen closes",st3:"Fish meze",st3v:"€26 per person",st4:"Tables",st4v:"Terrace and inside",sigK:"From the charcoal",sigH:"What people <em>come back for</em>",sigP:"Four plates that have been on the menu since the first summer.",d1:"Grilled octopus",d2:"Whole sea bream",d3:"Fried calamari",d4:"Village salad",menuK:"The menu",menuH:"Eat like the table next to you",menuP:"Whole fish is priced by weight. We bring it to your table before it goes on the grill.",mezeH:"Fish meze",mezeP:"Fourteen small plates brought in rounds: dips, salad, calamari, octopus, prawns, the day's fried fish and fruit to finish. Minimum two people.",mezeS:"per person",tagH:"House",legV:"Vegetarian",legH:"The dishes we are known for",legA:"Allergies? Tell us when you book.",resK:"Reservations",resH:"Book a table <em>by the water</em>",resP:"Send your request and we confirm on WhatsApp, usually within fifteen minutes.",fName:"Your name",fPhone:"Phone",fDate:"Date",fTime:"Time",fGuests:"Guests",fSeat:"Seating",seatT:"Terrace",seatI:"Inside",fNote:"Anything we should know?",notePh:"Birthday, high chair, allergies",prevL:"Message that will be sent:",send:"Send on WhatsApp",big:"Tables of 10 or more: please message us a day ahead.",iHours:"Hours",iHoursV:"Every day 12:00–23:00",iAddr:"Address",iPark:"Parking",iParkV:"Free, behind the taverna",map:"Open in Google Maps ↗",revK:"Reviews",revH:"Said at the table",r1:"They showed us the fish before grilling it. Best sea bream of the holiday.",r2:"We booked on WhatsApp from the airport and the table was waiting on the terrace.",r3:"Order the meze and do not eat lunch first.",sample:"Sample reviews. Your real Google reviews appear here.",fTag:"Family fish taverna on Mackenzie Beach, Larnaca.",fKitchen:"Kitchen closes 22:30",made:"Website by Nisi Studio",credit:"Photos: Unsplash",msg:"Hello Alati! I'd like to reserve a table:",mWhen:"When",mGuests:"Guests",mSeat:"Seating",mName:"Name",mPhone:"Phone",mNote:"Note"},
+ el:{demo:"Δοκιμαστική ιστοσελίδα. Η Ταβέρνα Αλάτι είναι παράδειγμα επιχείρησης.",logoS:"ψαροταβέρνα",navMenu:"Μενού",navRes:"Κράτηση",navFind:"Πού είμαστε",cta1:"Κράτηση τραπεζιού",cta2:"Δείτε το μενού",eyebrow:"Παραλία Μακένζυ · Λάρνακα · από το 1987",h1:"Φρέσκο ψάρι, <em>δέκα βήματα από τη θάλασσα.</em>",lead:"Οικογενειακή ταβέρνα όπου οι βάρκες φέρνουν ακόμη το ψάρι στην πίσω πόρτα. Ψάρι ημέρας στα κάρβουνα, μεζές για όλο το τραπέζι και μια καράφα κρύο λευκό.",open:"Ανοιχτά σήμερα · 12:00–23:00",catchT:"Ψάρι ημέρας",c1:"Τσιπούρα",c2:"Μπαρμπούνι",c3:"Χταπόδι",catchN:"Ψαρεμένα σήμερα το πρωί, αλιευτικό καταφύγιο Λάρνακας.",st1:"Καθημερινά",st2:"Η κουζίνα κλείνει",st3:"Ψαρομεζές",st3v:"€26 το άτομο",st4:"Τραπέζια",st4v:"Βεράντα και μέσα",sigK:"Από τα κάρβουνα",sigH:"Γι' αυτά <em>ξανάρχονται</em>",sigP:"Τέσσερα πιάτα που είναι στο μενού από το πρώτο καλοκαίρι.",d1:"Χταπόδι στα κάρβουνα",d2:"Τσιπούρα ολόκληρη",d3:"Καλαμάρι τηγανητό",d4:"Χωριάτικη σαλάτα",menuK:"Το μενού",menuH:"Φάτε όπως το διπλανό τραπέζι",menuP:"Το ολόκληρο ψάρι χρεώνεται με το κιλό. Σας το δείχνουμε πριν μπει στη σχάρα.",mezeH:"Ψαρομεζές",mezeP:"Δεκατέσσερα πιατάκια που έρχονται σε γύρους: αλοιφές, σαλάτα, καλαμάρι, χταπόδι, γαρίδες, τηγανητό ψάρι ημέρας και φρούτα. Ελάχιστο δύο άτομα.",mezeS:"το άτομο",tagH:"Σπιτικό",legV:"Χορτοφαγικό",legH:"Τα πιάτα που μας έκαναν γνωστούς",legA:"Αλλεργίες; Πείτε μας στην κράτηση.",resK:"Κρατήσεις",resH:"Κλείστε τραπέζι <em>δίπλα στο κύμα</em>",resP:"Στείλτε το αίτημά σας και επιβεβαιώνουμε στο WhatsApp, συνήθως σε δεκαπέντε λεπτά.",fName:"Όνομα",fPhone:"Τηλέφωνο",fDate:"Ημερομηνία",fTime:"Ώρα",fGuests:"Άτομα",fSeat:"Θέση",seatT:"Βεράντα",seatI:"Μέσα",fNote:"Κάτι που πρέπει να ξέρουμε;",notePh:"Γενέθλια, παιδικό καρεκλάκι, αλλεργίες",prevL:"Το μήνυμα που θα σταλεί:",send:"Αποστολή στο WhatsApp",big:"Για 10 άτομα και πάνω, στείλτε μας μήνυμα μία μέρα πριν.",iHours:"Ωράριο",iHoursV:"Καθημερινά 12:00–23:00",iAddr:"Διεύθυνση",iPark:"Στάθμευση",iParkV:"Δωρεάν, πίσω από την ταβέρνα",map:"Άνοιγμα στο Google Maps ↗",revK:"Κριτικές",revH:"Ειπώθηκε στο τραπέζι",r1:"Μας έδειξαν το ψάρι πριν το ψήσουν. Η καλύτερη τσιπούρα των διακοπών.",r2:"Κλείσαμε στο WhatsApp από το αεροδρόμιο και το τραπέζι μας περίμενε στη βεράντα.",r3:"Πάρτε τον μεζέ και μη φάτε μεσημεριανό πριν.",sample:"Ενδεικτικές κριτικές. Εδώ εμφανίζονται οι πραγματικές σας κριτικές Google.",fTag:"Οικογενειακή ψαροταβέρνα στην παραλία Μακένζυ, Λάρνακα.",fKitchen:"Η κουζίνα κλείνει 22:30",made:"Ιστοσελίδα από Nisi Studio",credit:"Φωτογραφίες: Unsplash",msg:"Γεια σας! Θα ήθελα να κλείσω τραπέζι:",mWhen:"Πότε",mGuests:"Άτομα",mSeat:"Θέση",mName:"Όνομα",mPhone:"Τηλέφωνο",mNote:"Σημείωση"},
+ ru:{demo:"Демо-сайт. Таверна «Алати» — пример бизнеса для портфолио.",logoS:"рыбная таверна",navMenu:"Меню",navRes:"Бронь",navFind:"Как найти",cta1:"Забронировать стол",cta2:"Смотреть меню",eyebrow:"Пляж Маккензи · Ларнака · с 1987 года",h1:"Свежая рыба <em>в десяти шагах от моря.</em>",lead:"Семейная таверна, куда рыбаки до сих пор приносят улов к задней двери. Рыба дня на углях, мезе на весь стол и графин холодного белого.",open:"Сегодня открыто · 12:00–23:00",catchT:"Улов дня",c1:"Дорада",c2:"Барабулька",c3:"Осьминог",catchN:"Выловлено сегодня утром, рыбацкая гавань Ларнаки.",st1:"Ежедневно",st2:"Кухня до",st3:"Рыбное мезе",st3v:"€26 с человека",st4:"Столики",st4v:"Терраса и зал",sigK:"С углей",sigH:"За чем <em>возвращаются</em>",sigP:"Четыре блюда, которые в меню с первого лета.",d1:"Осьминог на углях",d2:"Дорада целиком",d3:"Жареные кальмары",d4:"Деревенский салат",menuK:"Меню",menuH:"Закажите как за соседним столом",menuP:"Целая рыба продаётся на вес. Мы приносим её к столу перед тем, как отправить на гриль.",mezeH:"Рыбное мезе",mezeP:"Четырнадцать блюд, которые приносят по очереди: закуски, салат, кальмары, осьминог, креветки, жареная рыба дня и фрукты. Минимум на двоих.",mezeS:"с человека",tagH:"Фирменное",legV:"Вегетарианское",legH:"Блюда, которыми мы известны",legA:"Аллергия? Сообщите при бронировании.",resK:"Бронирование",resH:"Столик <em>у воды</em>",resP:"Отправьте заявку, и мы подтвердим в WhatsApp, обычно за пятнадцать минут.",fName:"Имя",fPhone:"Телефон",fDate:"Дата",fTime:"Время",fGuests:"Гостей",fSeat:"Место",seatT:"Терраса",seatI:"Зал",fNote:"Что нам стоит знать?",notePh:"День рождения, детский стул, аллергия",prevL:"Сообщение, которое будет отправлено:",send:"Отправить в WhatsApp",big:"Столы от 10 человек: напишите нам за день.",iHours:"Часы работы",iHoursV:"Ежедневно 12:00–23:00",iAddr:"Адрес",iPark:"Парковка",iParkV:"Бесплатная, за таверной",map:"Открыть в Google Maps ↗",revK:"Отзывы",revH:"Сказано за столом",r1:"Нам показали рыбу перед тем, как жарить. Лучшая дорада за весь отпуск.",r2:"Забронировали в WhatsApp из аэропорта, и столик ждал нас на террасе.",r3:"Берите мезе и не обедайте заранее.",sample:"Примеры отзывов. Здесь будут ваши настоящие отзывы Google.",fTag:"Семейная рыбная таверна на пляже Маккензи, Ларнака.",fKitchen:"Кухня работает до 22:30",made:"Сайт от Nisi Studio",credit:"Фото: Unsplash",msg:"Здравствуйте! Хочу забронировать стол:",mWhen:"Когда",mGuests:"Гостей",mSeat:"Место",mName:"Имя",mPhone:"Телефон",mNote:"Комментарий"}
+};
+let lang="en",tab="sea",guests=4;
+const $=id=>document.getElementById(id);
+
+function renderMenu(){
+  const t=T[lang];
+  $("tabs").innerHTML=menu.map(c=>`<button type="button" role="tab" aria-selected="${c.id===tab}" data-tab="${c.id}">${c.t[lang]}</button>`).join("");
+  $("tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{tab=b.dataset.tab;renderMenu()});
+  const c=menu.find(m=>m.id===tab);
+  $("items").innerHTML=c.items.map(i=>`<div class="item"><div class="row"><h3>${i.n[lang]}${i.g==="v"?'<span class="tag v">V</span>':i.g==="h"?`<span class="tag h">${t.tagH}</span>`:""}</h3><i></i><b>${i.p}</b></div><p>${i.d[lang]}</p></div>`).join("");
+}
+function update(){
+  const t=T[lang],seat=$("seat-t").checked?t.seatT:t.seatI;
+  const lines=[t.msg,`• ${t.mWhen}: ${$("f-date").value} ${$("f-time").value}`,`• ${t.mGuests}: ${guests}`,`• ${t.mSeat}: ${seat}`,`• ${t.mName}: ${$("f-name").value}`,`• ${t.mPhone}: ${$("f-phone").value}`];
+  if($("f-note").value.trim())lines.push(`• ${t.mNote}: ${$("f-note").value.trim()}`);
+  const text=lines.join("\n");
+  $("preview").textContent=text;
+  $("send").href=`https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+  $("bar-wa").href=`https://wa.me/${WA}?text=${encodeURIComponent(t.msg)}`;
+  $("guests").textContent=guests;
+}
+function setLang(l){
+  lang=l;document.documentElement.lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=T[l][el.dataset.i18n];if(v==null)return;el.hasAttribute("data-html")?el.innerHTML=v:el.textContent=v});
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=>el.placeholder=T[l][el.dataset.i18nPh]);
+  document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  renderMenu();update();
+}
+const ts=$("f-time");
+for(let h=12;h<=22;h++)for(const m of["00","30"]){if(h===22&&m==="30")break;const o=document.createElement("option");o.textContent=`${h}:${m}`;ts.appendChild(o)}
+ts.value="20:00";
+const d=new Date();d.setDate(d.getDate()+1);
+$("f-date").value=d.toISOString().slice(0,10);$("f-date").min=new Date().toISOString().slice(0,10);
+$("g-minus").onclick=()=>{guests=Math.max(1,guests-1);update()};
+$("g-plus").onclick=()=>{guests=Math.min(20,guests+1);update()};
+$("form").addEventListener("input",update);
+$("form").addEventListener("submit",e=>e.preventDefault());
+document.querySelectorAll(".langs button").forEach(b=>b.onclick=()=>setLang(b.dataset.lang));
+setLang("en");
+</script>
+</body>
+</html>
