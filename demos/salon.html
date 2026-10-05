@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thalassa Hair Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,400;0,600;1,400;1,600&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: deep plum hero with animated balayage hair canvas; blush body; colour-swatch fan as the signature salon detail */
+:root{
+  --bg:#fbf5f2;
+  --surface:#ffffff;
+  --ink:#2b1823;
+  --muted:#7c6571;
+  --line:#ecdcd8;
+  --plum:#4a1838;
+  --rose:#d5507a;
+  --gold:#d4a259;
+  --blush:#f6e1e4;
+  --on-dark:#fbeef0;
+  --display:"Noto Serif Display", "Playfair Display", Georgia, serif;
+  --body:"Manrope", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a0f15; --surface:#24151e; --ink:#f6e9ed; --muted:#bfa3b0; --line:#3a2430;
+    --plum:#2e0f22; --rose:#ec7499; --gold:#e2b56f; --blush:#33202a; --on-dark:#fbeef0; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1a0f15; --surface:#24151e; --ink:#f6e9ed; --muted:#bfa3b0; --line:#3a2430;
+  --plum:#2e0f22; --rose:#ec7499; --gold:#e2b56f; --blush:#33202a; --on-dark:#fbeef0; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;padding-inline:16px;padding-block:0;overflow-x:hidden}
+.wrap{max-width:1100px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;line-height:1.05;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+.demo-bar{margin-inline:-16px;padding:7px 16px;background:var(--gold);color:#2b1823;font-size:12.5px;font-weight:700;text-align:center}
+
+/* HERO — full-bleed plum */
+.hero-bg{margin-inline:-16px;padding-inline:16px;background:radial-gradient(120% 90% at 85% 10%,#7a2a58 0%,var(--plum) 55%,#2a0b1e 100%);color:var(--on-dark);position:relative;overflow:hidden}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;flex-wrap:wrap;position:relative;z-index:2}
+.logo{font-family:var(--display);font-size:26px;display:flex;align-items:center;gap:10px}
+.logo svg{width:26px;height:26px}
+.logo em{color:var(--gold)}
+.langs{display:flex;gap:4px;border:1px solid rgba(251,238,240,.3);border-radius:999px;padding:3px}
+.langs button{border:0;background:transparent;color:rgba(251,238,240,.75);font:700 12px var(--body);letter-spacing:.08em;padding:6px 10px;border-radius:999px;cursor:pointer}
+.langs button[aria-pressed="true"]{background:var(--gold);color:#2b1823}
+
+.hero{display:grid;gap:28px;padding-block:20px 56px;align-items:center;position:relative;z-index:2}
+@media (min-width:860px){.hero{grid-template-columns:1.05fr .95fr;padding-block:36px 84px}}
+.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800}
+.hero h1{font-size:clamp(44px,9vw,84px);margin-top:14px;font-weight:600}
+.hero h1 em{font-style:italic;font-weight:400;background:linear-gradient(90deg,#f2b8c9,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:rgba(251,238,240,.82);margin-top:18px;max-width:44ch;font-size:17px}
+.status{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);padding:6px 14px;border-radius:999px}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 4px rgba(74,222,128,.2)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 24px;border-radius:999px;font:800 15px var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-rose{background:var(--rose);color:#fff;box-shadow:0 10px 30px rgba(213,80,122,.35)}
+.btn-line{border-color:rgba(251,238,240,.5);color:var(--on-dark)}
+.stats{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.stats b{display:block;font-family:var(--display);font-size:30px;color:var(--gold);font-weight:600;line-height:1}
+.stats span{font-size:13px;color:rgba(251,238,240,.7)}
+
+.visual{position:relative;max-width:460px;width:100%;justify-self:center}
+.frame{position:relative;aspect-ratio:4/5;width:100%;border-radius:999px 999px 24px 24px;overflow:hidden;background:linear-gradient(180deg,#f9d9cf,#f3c1b4 60%,#e8a99a);box-shadow:0 30px 80px rgba(0,0,0,.35);border:6px solid rgba(212,162,89,.55)}
+.frame canvas{position:absolute;inset:0;width:100%;height:100%}
+.chip{position:absolute;background:var(--surface);color:var(--ink);border-radius:16px;padding:12px 14px;font-size:13px;box-shadow:0 14px 34px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;z-index:3}
+.chip b{font-family:var(--display);font-size:18px;font-weight:600}
+.chip.c1{left:-8px;bottom:56px}
+.chip.c2{right:-6px;top:70px}
+.chip .sw{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#3b2417,#9a6a3c 55%,#e8c48b)}
+.stars{color:var(--gold);letter-spacing:2px}
+@media (max-width:480px){.chip.c1{left:0}.chip.c2{right:0}}
+
+section{padding-block:64px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px;margin-bottom:32px}
+.sec-head h2{font-size:clamp(34px,6vw,52px)}
+.sec-head h2 em{color:var(--rose)}
+.sec-head p{color:var(--muted);max-width:44ch}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);font-weight:800;margin-bottom:10px}
+
+/* services */
+.svc{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;display:grid;gap:10px;align-content:start}
+.ico{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:var(--blush);color:var(--rose)}
+.ico svg{width:28px;height:28px}
+.card h3{font-size:24px;font-weight:600}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.card li{display:flex;justify-content:space-between;gap:12px;border-top:1px dashed var(--line);padding-top:8px;font-size:15px}
+.card li span:first-child{min-width:0}
+.card li b{font-variant-numeric:tabular-nums;white-space:nowrap}
+.card li small{color:var(--muted);font-weight:500}
+
+/* colour bar */
+.colour{margin-inline:-16px;padding-inline:16px;background:var(--plum);color:var(--on-dark)}
+.colour .sec-head p{color:rgba(251,238,240,.75)}
+.colour .kicker{color:var(--gold)}
+.fan{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.lock{border-radius:14px;overflow:hidden;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.lock i{display:block;height:120px}
+.lock div{padding:10px 12px;font-size:13px}
+.lock b{display:block;font-family:var(--display);font-size:17px;font-weight:600}
+.lock span{color:rgba(251,238,240,.7);font-variant-numeric:tabular-nums}
+
+/* gallery */
+.gallery{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media (min-width:760px){.gallery{grid-template-columns:repeat(4,1fr)}}
+.ph{position:relative;aspect-ratio:3/4;border-radius:18px;overflow:hidden;max-width:100%}
+.ph canvas{width:100%;height:100%;display:block}
+.ph span{position:absolute;left:10px;bottom:10px;background:rgba(43,24,35,.75);color:#fff;font-size:12px;font-weight:700;padding:5px 10px;border-radius:999px}
+
+.team{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.member{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;gap:16px;align-items:center}
+.mono{flex:none;width:62px;height:62px;border-radius:999px 999px 12px 12px;display:grid;place-items:center;font-family:var(--display);font-size:26px;color:#fff}
+.member p{color:var(--muted);font-size:14px}
+
+.reviews{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+blockquote{margin:0;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:20px;display:grid;gap:12px}
+blockquote p{font-family:var(--display);font-size:20px;line-height:1.35;font-style:italic}
+blockquote cite{font-style:normal;color:var(--muted);font-size:14px}
+.sample{font-size:12px;color:var(--muted);margin-top:12px}
+
+.book-bg{margin-inline:-16px;padding-inline:16px;background:var(--blush)}
+.book{display:grid;gap:28px}
+@media (min-width:860px){.book{grid-template-columns:1.1fr .9fr}}
+form{display:grid;gap:14px;background:var(--surface);border-radius:24px;padding:24px;box-shadow:0 20px 50px rgba(74,24,56,.12)}
+.row{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:440px){.row{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-width:0;text-transform:none;letter-spacing:0}
+textarea{resize:vertical;min-height:70px}
+.preview{font-size:14px;background:#dcf8c6;color:#14301f;border-radius:14px 14px 14px 4px;padding:14px;white-space:pre-wrap}
+.btn-wa{background:#25d366;color:#08341b}
+.info{display:grid;gap:18px;align-content:start}
+.info .box{background:var(--surface);border-radius:20px;padding:20px}
+.info dl{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin:0}
+.info dt{color:var(--muted);font-size:14px}
+.info dd{margin:0;font-variant-numeric:tabular-nums}
+.copyline{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.copyline button{font:700 12px var(--body);border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer}
+.btn-dark{background:var(--ink);color:var(--bg)}
+
+footer{padding-block:32px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#25d366;color:#08341b;border-radius:999px;padding:13px 18px;font:800 14px var(--body);text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:5;display:flex;align-items:center;gap:8px}
+.fab svg{width:20px;height:20px}
+@media (prefers-reduced-motion:no-preference){.btn,.fab,.card{transition:transform .2s}.btn:hover,.fab:hover,.card:hover{transform:translateY(-3px)}}
+</style>
+</head>
+<body>
+
+<div class="demo-bar" data-i18n="demo">Demo website. Thalassa Hair Studio is a sample business created to show what we build.</div>
+
+<div class="hero-bg">
+<div class="wrap">
+<header>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#d4a259" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>
+    <span>Thalassa <em>Hair</em></span>
+  </div>
+  <div class="langs" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="el" aria-pressed="false">ΕΛ</button>
+    <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div>
+    <div class="eyebrow" data-i18n="eyebrow">Hair studio · Limassol seafront</div>
+    <h1 data-i18n="h1" data-html>Sea air, <em>salon</em> hair.</h1>
+    <p class="lead" data-i18n="lead">Balayage, cuts and blow-dries by stylists who know what Cyprus humidity does to hair. Book in under a minute and get your confirmation on WhatsApp.</p>
+    <div class="status"><span class="dot"></span><span id="status-text">Open today · 09:00–19:00</span></div>
+    <div class="ctas">
+      <a class="btn btn-rose" href="#book" data-i18n="cta1">Book an appointment</a>
+      <a class="btn btn-line" href="#prices" data-i18n="cta2">See prices</a>
+    </div>
+    <div class="stats">
+      <div><b>4.9</b><span data-i18n="s1">Google rating</span></div>
+      <div><b>12</b><span data-i18n="s2">years in Limassol</span></div>
+      <div><b>3</b><span data-i18n="s3">languages spoken</span></div>
+    </div>
+  </div>
+  <div class="visual">
+    <div class="frame"><canvas id="hair" aria-hidden="true"></canvas></div>
+    <div class="chip c2"><span class="sw"></span><div><b>Balayage</b><br><span data-i18n="chip2">from €95</span></div></div>
+    <div class="chip c1"><div><span class="stars">★★★★★</span><br><span data-i18n="chip1">"Best colour in Limassol"</span></div></div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<section id="prices">
+  <div class="sec-head">
+    <div><div class="kicker" data-i18n="k1">Services</div><h2 data-i18n="pricesH" data-html>Our <em>menu</em></h2></div>
+    <p data-i18n="pricesP">Prices include wash and finish. For long or thick hair we confirm the final price before we start.</p>
+  </div>
+  <div class="svc" id="menu"></div>
+</section>
+</div>
+
+<div class="colour">
+<div class="wrap">
+<section>
+  <div class="sec-head">
+    <div><div class="kicker" data-i18n="k2">Colour bar</div><h2 data-i18n="colH">Find your shade</h2></div>
+    <p data-i18n="colP">Bring a photo or pick from the ring. Every colour starts with a free strand test.</p>
+  </div>
+  <div class="fan" id="fan"></div>
+</section>
+</div>
+</div>
+
+<div class="wrap">
+<section>
+  <div class="sec-head">
+    <div><div class="kicker" data-i18n="k3">Our work</div><h2 data-i18n="galH">Recent looks</h2></div>
+    <p data-i18n="galP">Your real Instagram photos go here.</p>
+  </div>
+  <div class="gallery" id="gallery"></div>
+</section>
+
+<section>
+  <div class="sec-head"><div><div class="kicker" data-i18n="k4">Stylists</div><h2 data-i18n="teamH">The team</h2></div></div>
+  <div class="team">
+    <div class="member"><div class="mono" style="background:linear-gradient(135deg,#d5507a,#4a1838)">E</div><div><b>Eleni</b><p data-i18n="t1">Colour specialist · EN, ΕΛ</p></div></div>
+    <div class="member"><div class="mono" style="background:linear-gradient(135deg,#d4a259,#8a4b2a)">A</div><div><b>Anastasia</b><p data-i18n="t2">Cuts & styling · EN, RU</p></div></div>
+    <div class="member"><div class="mono" style="background:linear-gradient(135deg,#7a2a58,#2b1823)">M</div><div><b>Marios</b><p data-i18n="t3">Men's cuts & beard · EN, ΕΛ</p></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><div><div class="kicker" data-i18n="k5">Reviews</div><h2 data-i18n="revH">What clients say</h2></div></div>
+  <div class="reviews">
+    <blockquote><span class="stars">★★★★★</span><p data-i18n="r1">Booked on WhatsApp at midnight and had a reply straight away. The colour still looks fresh after the beach.</p><cite>Client name</cite></blockquote>
+    <blockquote><span class="stars">★★★★★</span><p data-i18n="r2">Finally a salon where I can explain what I want in Russian.</p><cite>Client name</cite></blockquote>
+    <blockquote><span class="stars">★★★★★</span><p data-i18n="r3">Quick, friendly, and the reminder the day before saved me.</p><cite>Client name</cite></blockquote>
+  </div>
+  <p class="sample" data-i18n="sample">Sample reviews. Your real Google reviews appear here.</p>
+</section>
+</div>
+
+<div class="book-bg" id="book">
+<div class="wrap">
+<section>
+  <div class="sec-head">
+    <div><div class="kicker" data-i18n="k6">Booking</div><h2 data-i18n="bookH">Book in 30 seconds</h2></div>
+    <p data-i18n="bookP">Choose a service and time. Your request goes straight to our WhatsApp and we confirm within minutes.</p>
+  </div>
+  <div class="book">
+    <form id="form" novalidate>
+      <div class="row">
+        <label><span data-i18n="fName">Your name</span><input id="f-name" autocomplete="name" value="Maria"></label>
+        <label><span data-i18n="fPhone">Phone</span><input id="f-phone" type="tel" autocomplete="tel" value="+357 99 123456"></label>
+      </div>
+      <label><span data-i18n="fService">Service</span><select id="f-service"></select></label>
+      <div class="row">
+        <label><span data-i18n="fDate">Date</span><input id="f-date" type="date"></label>
+        <label><span data-i18n="fTime">Time</span><select id="f-time"></select></label>
+      </div>
+      <label><span data-i18n="fNote">Note (optional)</span><textarea id="f-note"></textarea></label>
+      <div class="preview" id="preview"></div>
+      <a class="btn btn-wa" id="wa-send" href="#" target="_blank" rel="noopener" data-i18n="send">Send on WhatsApp</a>
+    </form>
+    <div class="info">
+      <div class="box">
+        <dl>
+          <dt data-i18n="hours">Hours</dt><dd data-i18n="hoursV" data-html>Mon–Sat 09:00–19:00<br>Sunday closed</dd>
+          <dt data-i18n="addr">Address</dt><dd>28 Seafront Avenue, Limassol</dd>
+          <dt>WhatsApp</dt><dd class="copyline"><span id="phone">+357 99 000 000</span><button type="button" id="copy" data-i18n="copy">Copy</button></dd>
+        </dl>
+      </div>
+      <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=Limassol+seafront" target="_blank" rel="noopener" data-i18n="map">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+</div>
+</div>
+
+<div class="wrap">
+<footer>
+  <span>© 2026 Thalassa Hair Studio</span>
+  <span data-i18n="made">Website by Nisi Studio</span>
+</footer>
+</div>
+
+<a class="fab" id="fab" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.2 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-3.3-.8-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg><span>WhatsApp</span></a>
+
+<script>
+const WA = "35799000000"; // client's WhatsApp number, digits only
+const ICONS = {
+  scissors:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1 20 20M8.1 15.9 20 4"/></svg>',
+  colour:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c4 0 6-2 6-6V4h4v10c0 4 2 6 6 6"/><path d="M10 9h4"/></svg>',
+  dryer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a6 6 0 0 1 6-6h5v12H9a6 6 0 0 1-6-6Z"/><path d="M14 6h7M14 12h5M8 15l1 6h3l-1-6"/></svg>',
+  beard:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9v3a7 7 0 0 0 14 0V9"/><path d="M9 14c1 .7 2 1 3 1s2-.3 3-1M8 6h8"/></svg>'
+};
+const services = [
+  {ic:"scissors", cat:{en:"Cut & style",el:"Κούρεμα & styling",ru:"Стрижка и укладка"}, items:[
+    {n:{en:"Cut & blow-dry",el:"Κούρεμα & χτένισμα",ru:"Стрижка и укладка"}, p:45, d:60},
+    {n:{en:"Blow-dry",el:"Χτένισμα",ru:"Укладка"}, p:25, d:40},
+    {n:{en:"Bridal styling",el:"Νυφικό χτένισμα",ru:"Свадебная укладка"}, p:85, d:90}]},
+  {ic:"colour", cat:{en:"Colour",el:"Βαφή",ru:"Окрашивание"}, items:[
+    {n:{en:"Root colour",el:"Βαφή ρίζας",ru:"Корни"}, p:55, d:90},
+    {n:{en:"Balayage",el:"Balayage",ru:"Балаяж"}, p:95, d:180},
+    {n:{en:"Toner & gloss",el:"Toner & gloss",ru:"Тонирование"}, p:35, d:45}]},
+  {ic:"dryer", cat:{en:"Treatments",el:"Θεραπείες",ru:"Уход"}, items:[
+    {n:{en:"Keratin smoothing",el:"Κερατίνη",ru:"Кератин"}, p:120, d:150},
+    {n:{en:"Repair mask",el:"Μάσκα επανόρθωσης",ru:"Маска"}, p:18, d:20},
+    {n:{en:"Scalp ritual",el:"Περιποίηση τριχωτού",ru:"Уход за кожей головы"}, p:30, d:30}]},
+  {ic:"beard", cat:{en:"Men",el:"Ανδρικά",ru:"Мужские"}, items:[
+    {n:{en:"Men's cut",el:"Ανδρικό κούρεμα",ru:"Мужская стрижка"}, p:20, d:30},
+    {n:{en:"Cut & beard",el:"Κούρεμα & γένια",ru:"Стрижка и борода"}, p:28, d:45},
+    {n:{en:"Hot-towel shave",el:"Ξύρισμα με πετσέτα",ru:"Бритьё"}, p:18, d:25}]}
+];
+const shades = [
+  {c:["#1c120d","#2e1c13"], n:"Espresso", l:"3.0"},
+  {c:["#4a2e1d","#6b4329"], n:"Chocolate", l:"5.3"},
+  {c:["#7a3b1f","#b5552b"], n:"Copper", l:"7.4"},
+  {c:["#8f6239","#c99b62"], n:"Caramel", l:"7.3"},
+  {c:["#b98c55","#e3c48d"], n:"Honey", l:"8.3"},
+  {c:["#d9c3a0","#f3e6cc"], n:"Champagne", l:"10.1"}
+];
+const T = {
+ en:{demo:"Demo website. Thalassa Hair Studio is a sample business created to show what we build.",eyebrow:"Hair studio · Limassol seafront",h1:"Sea air, <em>salon</em> hair.",lead:"Balayage, cuts and blow-dries by stylists who know what Cyprus humidity does to hair. Book in under a minute and get your confirmation on WhatsApp.",cta1:"Book an appointment",cta2:"See prices",s1:"Google rating",s2:"years in Limassol",s3:"languages spoken",chip1:"\"Best colour in Limassol\"",chip2:"from €95",k1:"Services",pricesH:"Our <em>menu</em>",pricesP:"Prices include wash and finish. For long or thick hair we confirm the final price before we start.",k2:"Colour bar",colH:"Find your shade",colP:"Bring a photo or pick from the ring. Every colour starts with a free strand test.",level:"Level",k3:"Our work",galH:"Recent looks",galP:"Your real Instagram photos go here.",g:["Balayage","Bob cut","Copper glow","Bridal waves"],k4:"Stylists",teamH:"The team",t1:"Colour specialist · EN, ΕΛ",t2:"Cuts & styling · EN, RU",t3:"Men's cuts & beard · EN, ΕΛ",k5:"Reviews",revH:"What clients say",r1:"Booked on WhatsApp at midnight and had a reply straight away. The colour still looks fresh after the beach.",r2:"Finally a salon where I can explain what I want in Russian.",r3:"Quick, friendly, and the reminder the day before saved me.",sample:"Sample reviews. Your real Google reviews appear here.",k6:"Booking",bookH:"Book in 30 seconds",bookP:"Choose a service and time. Your request goes straight to our WhatsApp and we confirm within minutes.",fName:"Your name",fPhone:"Phone",fService:"Service",fDate:"Date",fTime:"Time",fNote:"Note (optional)",send:"Send on WhatsApp",hours:"Hours",hoursV:"Mon–Sat 09:00–19:00<br>Sunday closed",addr:"Address",copy:"Copy",copied:"Copied",map:"Open in Google Maps",made:"Website by Nisi Studio",open:"Open today · 09:00–19:00",closed:"Closed today · opens Monday 09:00",min:"min",msg:"Hello Thalassa! I'd like to book:",mName:"Name",mPhone:"Phone",mWhen:"When",mNote:"Note"},
+ el:{demo:"Δοκιμαστική ιστοσελίδα. Το Thalassa Hair Studio είναι παράδειγμα επιχείρησης.",eyebrow:"Κομμωτήριο · Παραλία Λεμεσού",h1:"Θαλασσινός αέρας, <em>τέλεια</em> μαλλιά.",lead:"Balayage, κούρεμα και χτένισμα από κομμωτές που ξέρουν τι κάνει η υγρασία της Κύπρου στα μαλλιά. Κλείστε ραντεβού σε ένα λεπτό με επιβεβαίωση στο WhatsApp.",cta1:"Κλείστε ραντεβού",cta2:"Τιμές",s1:"βαθμολογία Google",s2:"χρόνια στη Λεμεσό",s3:"γλώσσες",chip1:"\"Η καλύτερη βαφή στη Λεμεσό\"",chip2:"από €95",k1:"Υπηρεσίες",pricesH:"Το <em>μενού</em> μας",pricesP:"Οι τιμές περιλαμβάνουν λούσιμο και φινίρισμα. Για μακριά μαλλιά επιβεβαιώνουμε την τελική τιμή πριν ξεκινήσουμε.",k2:"Χρώματα",colH:"Βρείτε την απόχρωσή σας",colP:"Φέρτε μια φωτογραφία ή διαλέξτε από τον χρωματολόγιο. Κάθε βαφή ξεκινά με δωρεάν τεστ.",level:"Επίπεδο",k3:"Η δουλειά μας",galH:"Πρόσφατα looks",galP:"Εδώ μπαίνουν οι πραγματικές φωτογραφίες σας από το Instagram.",g:["Balayage","Καρέ","Χάλκινο","Νυφικές μπούκλες"],k4:"Κομμωτές",teamH:"Η ομάδα",t1:"Ειδική στη βαφή · EN, ΕΛ",t2:"Κούρεμα & styling · EN, RU",t3:"Ανδρικό κούρεμα & γένια · EN, ΕΛ",k5:"Κριτικές",revH:"Τι λένε οι πελάτες",r1:"Έκλεισα στο WhatsApp μεσάνυχτα και πήρα απάντηση αμέσως. Το χρώμα κρατάει και μετά τη θάλασσα.",r2:"Επιτέλους κομμωτήριο όπου μιλάνε και ρωσικά.",r3:"Γρήγοροι, φιλικοί, και η υπενθύμιση την προηγούμενη μέρα με έσωσε.",sample:"Ενδεικτικές κριτικές. Εδώ εμφανίζονται οι πραγματικές σας κριτικές Google.",k6:"Ραντεβού",bookH:"Ραντεβού σε 30 δευτερόλεπτα",bookP:"Επιλέξτε υπηρεσία και ώρα. Το αίτημα έρχεται στο WhatsApp μας και επιβεβαιώνουμε σε λίγα λεπτά.",fName:"Όνομα",fPhone:"Τηλέφωνο",fService:"Υπηρεσία",fDate:"Ημερομηνία",fTime:"Ώρα",fNote:"Σημείωση (προαιρετικά)",send:"Αποστολή στο WhatsApp",hours:"Ωράριο",hoursV:"Δευ–Σάβ 09:00–19:00<br>Κυριακή κλειστά",addr:"Διεύθυνση",copy:"Αντιγραφή",copied:"Αντιγράφηκε",map:"Άνοιγμα στο Google Maps",made:"Ιστοσελίδα από Nisi Studio",open:"Ανοιχτά σήμερα · 09:00–19:00",closed:"Κλειστά σήμερα · ανοίγουμε Δευτέρα 09:00",min:"λεπτά",msg:"Γεια σας! Θα ήθελα να κλείσω:",mName:"Όνομα",mPhone:"Τηλέφωνο",mWhen:"Πότε",mNote:"Σημείωση"},
+ ru:{demo:"Демо-сайт. Thalassa Hair Studio — пример бизнеса для портфолио.",eyebrow:"Салон · набережная Лимассола",h1:"Морской воздух, <em>идеальные</em> волосы.",lead:"Балаяж, стрижки и укладки от мастеров, которые знают, что кипрская влажность делает с волосами. Запись за минуту с подтверждением в WhatsApp.",cta1:"Записаться",cta2:"Цены",s1:"рейтинг Google",s2:"лет в Лимассоле",s3:"языка",chip1:"\"Лучшее окрашивание в Лимассоле\"",chip2:"от €95",k1:"Услуги",pricesH:"Наше <em>меню</em>",pricesP:"В цену входят мытьё и укладка. Для длинных волос согласуем итоговую цену до начала.",k2:"Палитра",colH:"Найдите свой оттенок",colP:"Принесите фото или выберите из палитры. Любое окрашивание начинается с бесплатного теста на пряди.",level:"Уровень",k3:"Наши работы",galH:"Недавние образы",galP:"Здесь будут ваши настоящие фото из Instagram.",g:["Балаяж","Боб","Медный","Свадебные локоны"],k4:"Мастера",teamH:"Команда",t1:"Колорист · EN, ΕΛ",t2:"Стрижки и укладки · EN, RU",t3:"Мужские стрижки и борода · EN, ΕΛ",k5:"Отзывы",revH:"Отзывы клиентов",r1:"Записалась в WhatsApp в полночь и сразу получила ответ. Цвет держится даже после моря.",r2:"Наконец салон, где можно объяснить всё по-русски.",r3:"Быстро, дружелюбно, а напоминание накануне меня спасло.",sample:"Примеры отзывов. Здесь будут ваши настоящие отзывы Google.",k6:"Запись",bookH:"Запись за 30 секунд",bookP:"Выберите услугу и время. Заявка придёт к нам в WhatsApp, подтвердим за несколько минут.",fName:"Имя",fPhone:"Телефон",fService:"Услуга",fDate:"Дата",fTime:"Время",fNote:"Комментарий (необязательно)",send:"Отправить в WhatsApp",hours:"Часы работы",hoursV:"Пн–Сб 09:00–19:00<br>Воскресенье выходной",addr:"Адрес",copy:"Копировать",copied:"Скопировано",map:"Открыть в Google Maps",made:"Сайт от Nisi Studio",open:"Сегодня открыто · 09:00–19:00",closed:"Сегодня закрыто · откроемся в понедельник 09:00",min:"мин",msg:"Здравствуйте! Хочу записаться:",mName:"Имя",mPhone:"Телефон",mWhen:"Когда",mNote:"Комментарий"}
+};
+let lang="en";
+const $=id=>document.getElementById(id);
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* flowing balayage hair: strands from dark root to honey ends */
+function hairPainter(canvas, opts){
+  const ctx=canvas.getContext("2d");
+  const o=Object.assign({root:"#2a160c",mid:"#7a4a26",tip:"#e6c08a",bg:null,strands:70,wave:1},opts);
+  let w,h,dpr;
+  function size(){dpr=Math.min(devicePixelRatio||1,2);w=canvas.clientWidth;h=canvas.clientHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function draw(t){
+    ctx.clearRect(0,0,w,h);
+    if(o.bg){const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,o.bg[0]);g.addColorStop(1,o.bg[1]);ctx.fillStyle=g;ctx.fillRect(0,0,w,h)}
+    const grad=ctx.createLinearGradient(0,0,0,h);
+    grad.addColorStop(0,o.root);grad.addColorStop(.45,o.mid);grad.addColorStop(1,o.tip);
+    ctx.lineCap="round";
+    for(let i=0;i<o.strands;i++){
+      const f=i/o.strands;
+      const x0=w*(.18+f*.64);
+      const sway=Math.sin(t*.0006+f*6)*w*.035*o.wave;
+      ctx.beginPath();
+      ctx.moveTo(x0,-10);
+      ctx.bezierCurveTo(x0+w*.22*Math.sin(f*9)+sway,h*.3, x0-w*.25*Math.cos(f*7)-sway,h*.62, x0+w*.12*Math.sin(f*5+t*.0004)+sway*1.5,h+10);
+      ctx.strokeStyle=grad;
+      ctx.globalAlpha=.25+.55*Math.abs(Math.sin(f*13));
+      ctx.lineWidth=1.5+3.5*Math.abs(Math.cos(f*11));
+      ctx.stroke();
+    }
+    ctx.globalAlpha=.35;ctx.strokeStyle="#fff7e6";ctx.lineWidth=1;
+    for(let i=0;i<14;i++){const f=i/14,x0=w*(.25+f*.5),sway=Math.sin(t*.0006+f*6)*w*.035*o.wave;ctx.beginPath();ctx.moveTo(x0,-10);ctx.bezierCurveTo(x0+w*.2*Math.sin(f*9)+sway,h*.3,x0-w*.22*Math.cos(f*7)-sway,h*.62,x0+w*.1*Math.sin(f*5)+sway,h+10);ctx.stroke()}
+    ctx.globalAlpha=1;
+  }
+  size(); addEventListener("resize",()=>{size();draw(performance.now())});
+  if(reduce||!o.animate){draw(800)} else {const loop=t=>{draw(t);requestAnimationFrame(loop)};requestAnimationFrame(loop)}
+}
+
+function render(){
+  const t=T[lang];
+  $("menu").innerHTML=services.map(g=>`<div class="card"><div class="ico">${ICONS[g.ic]}</div><h3>${g.cat[lang]}</h3><ul>${g.items.map(i=>`<li><span>${i.n[lang]}<br><small>${i.d} ${t.min}</small></span><b>€${i.p}</b></li>`).join("")}</ul></div>`).join("");
+  $("fan").innerHTML=shades.map(s=>`<div class="lock"><i style="background:linear-gradient(160deg,${s.c[0]},${s.c[1]})"></i><div><b>${s.n}</b><span>${t.level} ${s.l}</span></div></div>`).join("");
+  document.querySelectorAll(".ph span").forEach((el,i)=>el.textContent=t.g[i]);
+  const sel=$("f-service"),prev=sel.selectedIndex;
+  sel.innerHTML=services.flatMap(g=>g.items).map(i=>`<option>${i.n[lang]} · €${i.p}</option>`).join("");
+  sel.selectedIndex=prev>-1?prev:4;
+}
+function setLang(l){
+  lang=l;document.documentElement.lang=l;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=T[l][el.dataset.i18n];if(v==null)return; if(el.hasAttribute("data-html"))el.innerHTML=v; else el.textContent=v; if(el.dataset.i18n==="hoursV")el.innerHTML=v;});
+  document.querySelectorAll(".langs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===l));
+  $("status-text").textContent=new Date().getDay()===0?T[l].closed:T[l].open;
+  render();update();
+}
+function update(){
+  const t=T[lang];
+  const lines=[t.msg,"• "+$("f-service").value,`• ${t.mWhen}: ${$("f-date").value} ${$("f-time").value}`,`• ${t.mName}: ${$("f-name").value}`,`• ${t.mPhone}: ${$("f-phone").value}`];
+  if($("f-note").value.trim())lines.push(`• ${t.mNote}: ${$("f-note").value.trim()}`);
+  const text=lines.join("\n");
+  $("preview").textContent=text;
+  $("wa-send").href=`https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+  $("fab").href=`https://wa.me/${WA}?text=${encodeURIComponent(t.msg)}`;
+}
+
+/* gallery tiles: four hair looks drawn in the same style */
+const looks=[
+  {root:"#2a160c",mid:"#8a5a2e",tip:"#efcf96",bg:["#f7d9d0","#e9b7a8"],wave:1},
+  {root:"#140b07",mid:"#2e1a10",tip:"#4a2c1a",bg:["#d8e6e3","#a9c9c3"],wave:.4},
+  {root:"#5a2312",mid:"#a5461f",tip:"#de7a3c",bg:["#f3e1c9","#e4c39b"],wave:.8},
+  {root:"#6b4a2a",mid:"#c4a070",tip:"#f4e4c4",bg:["#efe0ea","#d7b7cb"],wave:1.4}
+];
+$("gallery").innerHTML=looks.map(()=>`<div class="ph"><canvas aria-hidden="true"></canvas><span></span></div>`).join("");
+document.querySelectorAll(".ph canvas").forEach((c,i)=>hairPainter(c,Object.assign({strands:55},looks[i])));
+hairPainter($("hair"),{animate:true,strands:80});
+
+const ts=$("f-time");
+for(let h=9;h<19;h++)for(const m of["00","30"]){const o=document.createElement("option");o.textContent=`${String(h).padStart(2,"0")}:${m}`;ts.appendChild(o)}
+ts.value="11:00";
+const d=new Date();d.setDate(d.getDate()+(d.getDay()===6?2:1));
+$("f-date").value=d.toISOString().slice(0,10);
+$("f-date").min=new Date().toISOString().slice(0,10);
+document.querySelectorAll(".langs button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+$("form").addEventListener("input",update);
+$("form").addEventListener("submit",e=>e.preventDefault());
+$("copy").addEventListener("click",()=>{
+  const done=()=>{$("copy").textContent=T[lang].copied;setTimeout(()=>$("copy").textContent=T[lang].copy,1500)};
+  try{navigator.clipboard.writeText($("phone").textContent).then(done).catch(()=>getSelection().selectAllChildren($("phone")))}catch(e){getSelection().selectAllChildren($("phone"))}
+});
+setLang("en");
+</script>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nisi Studio</title>
+<meta name="description" content="Websites for small businesses in Cyprus. Mobile-first, WhatsApp booking, ready in 7 days, from €149.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: cobalt-on-paper studio site; hero with three phone screens previewing the demos; examples, plans, process, free-demo form that becomes a WhatsApp message */
+:root{
+  --bg:#f5f6fa;
+  --surface:#ffffff;
+  --ink:#10162a;
+  --muted:#5b6380;
+  --line:#e0e3ee;
+  --cobalt:#1f45f0;
+  --cobalt-soft:#e6ebff;
+  --sun:#ffcf3a;
+  --on-cobalt:#ffffff;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b0f1d; --surface:#131a2e; --ink:#eef1fb; --muted:#a3abc8; --line:#232c47;
+    --cobalt:#6f8bff; --cobalt-soft:#1b2550; --sun:#ffd65c; --on-cobalt:#0b0f1d; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b0f1d; --surface:#131a2e; --ink:#eef1fb; --muted:#a3abc8; --line:#232c47;
+  --cobalt:#6f8bff; --cobalt-soft:#1b2550; --sun:#ffd65c; --on-cobalt:#0b0f1d; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-inline:16px;padding-block:0;overflow-x:hidden}
+.wrap{max-width:1120px;margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;margin:0;text-wrap:balance;letter-spacing:-.025em}
+p{margin:0}
+a{color:inherit}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--cobalt);outline-offset:3px;border-radius:4px}
+.hl{background:linear-gradient(transparent 58%,var(--sun) 58%,var(--sun) 90%,transparent 90%);color:inherit}
+
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:24px;text-decoration:none}
+.logo svg{width:32px;height:32px}
+.links{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.links a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 12px;border-radius:10px;color:var(--muted)}
+.links a:hover{color:var(--ink);background:var(--surface)}
+.links a.cta{background:var(--ink);color:var(--bg)}
+@media (max-width:640px){.links a:not(.cta){display:none}}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 24px;border-radius:14px;font-weight:800;font-size:16px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.btn-cobalt{background:var(--cobalt);color:var(--on-cobalt);box-shadow:0 12px 30px rgba(31,69,240,.28)}
+.btn-ghost{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.btn-wa{background:#25d366;color:#08341b}
+
+.hero{display:grid;gap:36px;padding-block:24px 56px;align-items:center}
+@media (min-width:920px){.hero{grid-template-columns:1fr 1fr;padding-block:40px 80px}}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:700}
+.pill i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.hero h1{font-size:clamp(44px,8.4vw,84px);margin-top:18px}
+.hero .lead{color:var(--muted);font-size:19px;margin-top:18px;max-width:42ch}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:26px;font-size:15px;color:var(--muted)}
+.facts span::before{content:"✓ ";color:var(--cobalt);font-weight:800}
+
+/* three phones */
+.phones{position:relative;height:440px;max-width:520px;width:100%;justify-self:center}
+.phone{position:absolute;width:190px;height:390px;border-radius:30px;background:#0d1020;padding:9px;box-shadow:0 30px 60px rgba(16,22,42,.28);text-decoration:none;display:block}
+.phone .scr{width:100%;height:100%;border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.phone.p1{left:0;top:40px;transform:rotate(-7deg)}
+.phone.p2{left:50%;top:0;transform:translateX(-50%);z-index:2}
+.phone.p3{right:0;top:40px;transform:rotate(7deg)}
+@media (max-width:520px){.phones{height:380px}.phone{width:150px;height:310px;border-radius:24px}.phone .scr{border-radius:18px}}
+@media (prefers-reduced-motion:no-preference){.phone{transition:transform .25s}.phone.p1:hover{transform:rotate(-4deg) translateY(-8px)}.phone.p3:hover{transform:rotate(4deg) translateY(-8px)}.phone.p2:hover{transform:translateX(-50%) translateY(-8px)}}
+.mini-bar{height:7px;border-radius:4px;margin:3px 0}
+.mini{padding:12px;display:grid;gap:6px;align-content:start}
+.mini .t{font-family:var(--display);font-weight:800;line-height:1.05;font-size:17px}
+.mini .b{height:22px;border-radius:999px;width:70%;margin-top:4px}
+.mini .img{border-radius:12px;height:110px;margin-top:6px}
+.mini .row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.mini .row div{height:58px;border-radius:10px}
+.label{position:absolute;bottom:-34px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:13px;font-weight:800;color:var(--muted)}
+
+section{padding-block:64px}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:14px;margin-bottom:30px}
+.sec-head h2{font-size:clamp(34px,6vw,56px)}
+.sec-head p{color:var(--muted);max-width:44ch}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--cobalt);font-weight:600;margin-bottom:12px}
+
+/* examples */
+.examples{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.ex{background:var(--surface);border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.ex .shot{height:190px;display:grid;place-items:end center;padding-top:22px;overflow:hidden}
+.ex .shot .phone{position:relative;width:150px;height:240px;border-radius:24px 24px 0 0;padding:8px 8px 0;box-shadow:none}
+.ex .shot .scr{border-radius:16px 16px 0 0}
+.ex .body{padding:20px;display:grid;gap:10px;flex:1;align-content:start}
+.ex h3{font-size:26px}
+.ex p{color:var(--muted)}
+.ex ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.ex li{font-size:13px;font-weight:700;background:var(--cobalt-soft);color:var(--cobalt);padding:4px 10px;border-radius:999px}
+.ex .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 20px 20px}
+.ex .price{font-family:var(--mono);font-weight:600;font-size:15px;color:var(--muted)}
+.ex .price b{font-family:var(--display);font-size:26px;color:var(--ink)}
+
+/* included */
+.included{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.inc{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px}
+.inc svg{flex:none;width:40px;height:40px;padding:9px;border-radius:12px;background:var(--cobalt-soft);color:var(--cobalt)}
+.inc b{display:block;font-size:17px}
+.inc span{color:var(--muted);font-size:15px}
+
+/* plans */
+.plans{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:stretch}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:14px}
+.plan.feat{border:2px solid var(--cobalt);position:relative}
+.plan.feat::before{content:attr(data-badge);position:absolute;top:-13px;left:24px;background:var(--cobalt);color:var(--on-cobalt);font-size:12px;font-weight:800;padding:4px 12px;border-radius:999px}
+.plan h3{font-size:24px}
+.plan .for{color:var(--muted);font-size:15px;margin-top:-6px}
+.amount{display:flex;align-items:baseline;gap:6px}
+.amount b{font-family:var(--display);font-size:52px;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.amount span{color:var(--muted);font-size:15px}
+.plan ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;flex:1}
+.plan li{padding-left:24px;position:relative;font-size:16px}
+.plan li::before{content:"";position:absolute;left:0;top:7px;width:12px;height:7px;border-left:2.5px solid var(--cobalt);border-bottom:2.5px solid var(--cobalt);transform:rotate(-45deg)}
+.care{margin-top:18px;display:grid;gap:16px;background:var(--ink);color:var(--bg);border-radius:24px;padding:24px}
+@media (min-width:820px){.care{grid-template-columns:1.2fr 1fr;align-items:center}}
+.care h3{font-size:28px}
+.care p{opacity:.78;margin-top:8px}
+.care .amount b{color:var(--sun)}
+.care .amount span{color:inherit;opacity:.7}
+.care ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:15px}
+.care li::before{content:"✓ ";color:var(--sun);font-weight:800}
+.addons{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:16px}
+.addon{border:1px dashed var(--line);border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.addon span{color:var(--muted);font-size:14px;display:block}
+.addon b{font-family:var(--mono);font-weight:600;white-space:nowrap}
+
+/* process */
+.process{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));counter-reset:s}
+.process div{border-top:3px solid var(--cobalt);padding-top:16px;display:grid;gap:6px;counter-increment:s}
+.process div::before{content:counter(s,decimal-leading-zero);font-family:var(--mono);font-weight:600;color:var(--cobalt);font-size:14px}
+.process b{font-family:var(--display);font-size:22px}
+.process p{color:var(--muted)}
+.process small{font-family:var(--mono);color:var(--muted);font-size:13px}
+
+/* faq */
+.faq{display:grid;gap:10px;max-width:820px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+summary{cursor:pointer;font-weight:800;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:800;color:var(--cobalt)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px}
+
+/* demo form */
+.demo{margin-inline:-16px;padding-inline:16px;background:var(--cobalt);color:var(--on-cobalt)}
+.demo-grid{display:grid;gap:28px;padding-block:64px}
+@media (min-width:900px){.demo-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.demo h2{font-size:clamp(36px,6.4vw,60px)}
+.demo .lead{opacity:.86;margin-top:16px;max-width:40ch;font-size:18px}
+.demo ol{margin:22px 0 0;padding-left:20px;display:grid;gap:8px;opacity:.92}
+form{background:var(--surface);color:var(--ink);border-radius:24px;padding:24px;display:grid;gap:14px;box-shadow:0 30px 60px rgba(0,0,0,.2)}
+.frow{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media (max-width:460px){.frow{grid-template-columns:1fr}}
+label{display:grid;gap:6px;font-size:13px;font-weight:800;color:var(--muted)}
+input,select{font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-width:0}
+.preview{font-size:14px;background:#dcf8c6;color:#14301f;border-radius:14px 14px 14px 4px;padding:14px;white-space:pre-wrap}
+.small{font-size:13px;color:var(--muted)}
+
+footer{padding-block:36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:14px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));background:#25d366;color:#08341b;border-radius:999px;padding:13px 18px;font-weight:800;font-size:14px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.22);z-index:5}
+@media (prefers-reduced-motion:no-preference){.btn,.ex{transition:transform .18s}.btn:hover{transform:translateY(-2px)}.ex:hover{transform:translateY(-4px)}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<nav aria-label="Main">
+  <a class="logo" href="#top"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#1f45f0"/><path d="M6 21c3-4 6-4 10 0s7 4 10 0" stroke="#ffcf3a" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="16" cy="11" r="4" fill="#fff"/></svg>Nisi Studio</a>
+  <div class="links"><a href="#work">Examples</a><a href="#pricing">Pricing</a><a href="#how">How it works</a><a href="#faq">FAQ</a><a href="legal.html">Terms</a><a class="cta" href="#demo">Free demo</a></div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <span class="pill"><i></i>Taking new clients across Cyprus</span>
+    <h1>Your business, <span class="hl">online in 7 days.</span></h1>
+    <p class="lead">Websites for salons, shops, rentals and local services. Mobile-first, in your customers' languages, with bookings that land straight in your WhatsApp.</p>
+    <div class="ctas">
+      <a class="btn btn-cobalt" href="#demo">Get a free demo</a>
+      <a class="btn btn-ghost" href="#work">See examples</a>
+    </div>
+    <div class="facts"><span>From €149</span><span>Domain & hosting included</span><span>No contract lock-in</span></div>
+  </div>
+  <div class="phones" aria-label="Three example websites">
+    <a class="phone p1" href="demos/salon.html" target="_blank" rel="noopener" aria-label="Open the salon example">
+      <div class="scr" style="background:#4a1838;color:#fbeef0">
+        <div class="mini"><div class="mini-bar" style="width:40%;background:#d4a259"></div><div class="t">Sea air,<br><em style="color:#f2b8c9">salon</em> hair.</div><div class="b" style="background:#d5507a"></div><div class="img" style="background:linear-gradient(170deg,#f9d9cf,#e8a99a 40%,#7a4a26 70%,#e6c08a)"></div><div class="row"><div style="background:rgba(255,255,255,.12)"></div><div style="background:rgba(255,255,255,.12)"></div></div></div>
+      </div><span class="label">Salon</span>
+    </a>
+    <a class="phone p2" href="demos/cars/index.html" target="_blank" rel="noopener" aria-label="Open the car rental example">
+      <div class="scr" style="background:#13243b;color:#eef5fa">
+        <div class="mini"><div class="mini-bar" style="width:50%;background:#ff7a2f"></div><div class="t">Land. Get the keys. <span style="color:#ff7a2f">Drive the coast.</span></div><div class="b" style="background:#ff7a2f"></div><div class="img" style="background:linear-gradient(180deg,#ffb37a 0,#ffd9b0 45%,#1fa7c0 45%,#0d6c84 68%,#2a3446 68%)"></div><div class="row"><div style="background:#fff"></div><div style="background:#fff"></div></div></div>
+      </div><span class="label">Car rental · 5 pages</span>
+    </a>
+    <a class="phone p3" href="demos/shop.html" target="_blank" rel="noopener" aria-label="Open the shop example">
+      <div class="scr" style="background:#3d4f25;color:#f4f6e8">
+        <div class="mini"><div class="mini-bar" style="width:35%;background:#f2cf5b"></div><div class="t">Cypriot olive oil, <em style="color:#f2cf5b">made into soap.</em></div><div class="b" style="background:#f2cf5b"></div><div class="img" style="background:linear-gradient(180deg,#eef1e2,#dfe5c9)"></div><div class="row"><div style="background:#e9dfb8"></div><div style="background:#b7c98a"></div></div></div>
+      </div><span class="label">Online shop</span>
+    </a>
+  </div>
+</header>
+
+<section id="work">
+  <div class="sec-head">
+    <div><div class="kicker">Examples</div><h2>Open them on your phone</h2></div>
+    <p>Three demo businesses we built to show what you get. Tap a demo, switch languages, try the booking.</p>
+  </div>
+  <div class="examples">
+    <article class="ex">
+      <div class="shot" style="background:linear-gradient(180deg,#f6e1e4,#fbf5f2)"><div class="phone"><div class="scr" style="background:#4a1838;color:#fbeef0"><div class="mini"><div class="mini-bar" style="width:40%;background:#d4a259"></div><div class="t">Sea air, salon hair.</div><div class="b" style="background:#d5507a"></div><div class="img" style="background:linear-gradient(170deg,#f9d9cf,#7a4a26 70%,#e6c08a)"></div></div></div></div></div>
+      <div class="body"><h3>Hair salon</h3><p>Price list, team, colour shades and a booking form that writes the WhatsApp message for the client.</p><ul><li>EN · ΕΛ · RU</li><li>Booking</li><li>Price list</li></ul></div>
+      <div class="foot"><span class="price">from <b>€149</b></span><a class="btn btn-ghost" href="demos/salon.html" target="_blank" rel="noopener">Open demo</a></div>
+    </article>
+    <article class="ex">
+      <div class="shot" style="background:linear-gradient(180deg,#e7ecd6,#f3f4ec)"><div class="phone"><div class="scr" style="background:#3d4f25;color:#f4f6e8"><div class="mini"><div class="mini-bar" style="width:35%;background:#f2cf5b"></div><div class="t">Olive oil, made into soap.</div><div class="b" style="background:#f2cf5b"></div><div class="row"><div style="background:#e9dfb8"></div><div style="background:#b7c98a"></div></div></div></div></div></div>
+      <div class="body"><h3>Online shop</h3><p>Product catalogue with a basket, delivery options and free-shipping nudge. Orders arrive on WhatsApp, payment by card link.</p><ul><li>Basket</li><li>Delivery rules</li><li>Gift sets</li></ul></div>
+      <div class="foot"><span class="price">from <b>€199</b></span><a class="btn btn-ghost" href="demos/shop.html" target="_blank" rel="noopener">Open demo</a></div>
+    </article>
+    <article class="ex">
+      <div class="shot" style="background:linear-gradient(180deg,#cfeef5,#f2f6f8)"><div class="phone"><div class="scr" style="background:#13243b;color:#eef5fa"><div class="mini"><div class="mini-bar" style="width:50%;background:#ff7a2f"></div><div class="t">Land. Get the keys.</div><div class="b" style="background:#ff7a2f"></div><div class="img" style="background:linear-gradient(180deg,#ffb37a 0,#ffd9b0 45%,#1fa7c0 45%,#0d6c84 68%,#2a3446 68%)"></div></div></div></div></div>
+      <div class="body"><h3>Car rental</h3><p>Five pages: fleet with seasonal prices, an instant price calculator, rental terms and a GDPR privacy policy.</p><ul><li>5 pages</li><li>Price calculator</li><li>Terms & privacy</li></ul></div>
+      <div class="foot"><span class="price">from <b>€249</b></span><a class="btn btn-ghost" href="demos/cars/index.html" target="_blank" rel="noopener">Open demo</a></div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head"><div><div class="kicker">Included in every site</div><h2>Everything a small business needs</h2></div></div>
+  <div class="included">
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><div><b>Built for phones</b><span>Most of your customers will open it on a phone. We design for that first.</span></div></div>
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-4-7.5L21 3l-1 4.5A9 9 0 0 1 21 12Z"/></svg><div><b>WhatsApp booking</b><span>Requests arrive as ready messages. No new app to learn.</span></div></div>
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h12M9 3v2m1.5 9A15 15 0 0 1 6 7m7 13 4-9 4 9m-7-3h6"/></svg><div><b>Up to 3 languages</b><span>English, Greek and Russian, for locals, tourists and the Russian-speaking community.</span></div></div>
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><div><b>Your own domain</b><span>yourbusiness.com or .com.cy, with the padlock (SSL).</span></div></div>
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-6-7-12a7 7 0 0 1 14 0c0 6-7 12-7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><div><b>Google Maps link</b><span>Directions and opening hours one tap away.</span></div></div>
+    <div class="inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg><div><b>Privacy page</b><span>A GDPR privacy notice, written for your business.</span></div></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-head">
+    <div><div class="kicker">Pricing</div><h2>Clear prices, paid once</h2></div>
+    <p>Pay 50% to start and 50% when you approve the site. Prices in euros.</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>One-page site</h3><p class="for">Salons, cafés, trades, freelancers</p>
+      <div class="amount"><b>€149</b><span>one-time</span></div>
+      <ul><li>One long page with all sections</li><li>Services and price list</li><li>WhatsApp booking form</li><li>1 language (+€30 each extra)</li><li>2 rounds of changes</li></ul>
+      <a class="btn btn-ghost" href="#demo" data-plan="One-page site">Choose this</a>
+    </div>
+    <div class="plan">
+      <h3>Online shop</h3><p class="for">Makers and small sellers</p>
+      <div class="amount"><b>€199</b><span>one-time</span></div>
+      <ul><li>Up to 20 products</li><li>Basket and delivery options</li><li>Orders sent to WhatsApp</li><li>Card payment links (Stripe)</li><li>2 rounds of changes</li></ul>
+      <a class="btn btn-ghost" href="#demo" data-plan="Online shop">Choose this</a>
+    </div>
+    <div class="plan feat" data-badge="Most chosen">
+      <h3>Business site</h3><p class="for">Rentals, clinics, agencies, hotels</p>
+      <div class="amount"><b>€249</b><span>one-time</span></div>
+      <ul><li>Up to 5 pages</li><li>Price calculator or booking flow</li><li>3 languages included</li><li>Terms and privacy pages</li><li>3 rounds of changes</li></ul>
+      <a class="btn btn-cobalt" href="#demo" data-plan="Business site">Choose this</a>
+    </div>
+  </div>
+  <div class="care">
+    <div>
+      <h3>Care plan, needed for every site</h3>
+      <p>We host it, renew your domain and keep it working. Cancel any time; you keep your domain and files.</p>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div class="amount"><b>€19</b><span>/ month, or €190 / year</span></div>
+      <ul><li>Hosting, domain renewal and SSL</li><li>Up to 30 minutes of edits each month</li><li>Support on WhatsApp</li></ul>
+    </div>
+  </div>
+  <div class="addons">
+    <div class="addon"><div>WhatsApp auto-replies<span>Instant answers to prices, hours and location</span></div><b>+€39/mo</b></div>
+    <div class="addon"><div>Google Business setup<span>Show up on Google Maps with photos and hours</span></div><b>€39</b></div>
+    <div class="addon"><div>Booking reminders<span>Automatic message the day before</span></div><b>+€19/mo</b></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="sec-head"><div><div class="kicker">How it works</div><h2>From message to live site</h2></div></div>
+  <div class="process">
+    <div><b>Send us a message</b><p>Tell us your business name and send your Instagram or Facebook page.</p><small>5 minutes</small></div>
+    <div><b>See your free demo</b><p>We build a first version with your name and services. You only pay if you like it.</p><small>48 hours</small></div>
+    <div><b>Approve and launch</b><p>Pay 50%, send photos and final details. We connect your domain and go live.</p><small>within 7 days</small></div>
+    <div><b>We look after it</b><p>Need a new price or photo? Send it on WhatsApp and it's updated.</p><small>every month</small></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="sec-head"><div><div class="kicker">FAQ</div><h2>Questions we hear</h2></div></div>
+  <div class="faq">
+    <details><summary>Why is it cheaper than local agencies?</summary><p>We are a small remote studio with no office costs, and we build on a proven set of templates that we adapt to your business. You get a custom-looking site without paying for weeks of meetings.</p></details>
+    <details><summary>Do I own my website?</summary><p>Yes. The domain carries your business name and the files are yours. We manage the technical side while you're on the care plan, and if you ever leave, we transfer the domain and hand over every file.</p></details>
+    <details><summary>What do I need to send you?</summary><p>Your logo if you have one, 5 to 15 photos, your services and prices, opening hours and your WhatsApp number. We can write the text for you.</p></details>
+    <details><summary>Can I take card payments?</summary><p>Yes. Shops and bookings can send a secure Stripe payment link after you confirm an order. For bigger stores we can move you to Shopify later.</p></details>
+    <details><summary>How do we work together?</summary><p>Everything happens on WhatsApp and short video calls, in English. You approve each step before we move on.</p></details>
+  </div>
+</section>
+</div>
+
+<div class="demo" id="demo">
+<div class="wrap">
+<div class="demo-grid">
+  <div>
+    <h2>Get your free demo in 48 hours</h2>
+    <p class="lead">Fill in four fields. We build a first version with your business name, and you decide after you see it.</p>
+    <ol><li>No payment to see the demo</li><li>No obligation to continue</li><li>Reply on WhatsApp within a few hours</li></ol>
+  </div>
+  <form id="form" novalidate>
+    <div class="frow">
+      <label>Your name<input id="f-name" autocomplete="name" value="Andreas"></label>
+      <label>Business name<input id="f-biz" value="Andreas Barber Shop"></label>
+    </div>
+    <div class="frow">
+      <label>Type of business<select id="f-type"><option>Salon / barber / beauty</option><option>Restaurant / café</option><option>Shop / online seller</option><option>Car or boat rental</option><option>Clinic / health</option><option>Real estate</option><option>Freelancer / services</option><option>Other</option></select></label>
+      <label>City<select id="f-country"><option>Limassol</option><option>Nicosia</option><option>Larnaca</option><option>Paphos</option><option>Ayia Napa / Protaras</option><option>Other</option></select></label>
+    </div>
+    <div class="frow">
+      <label>Plan<select id="f-plan"><option>Not sure yet</option><option>One-page site</option><option>Online shop</option><option>Business site</option></select></label>
+      <label>Instagram or Facebook (optional)<input id="f-link" placeholder="@yourbusiness"></label>
+    </div>
+    <div><div class="small" style="margin-bottom:6px">Message that will be sent:</div><div class="preview" id="preview"></div></div>
+    <a class="btn btn-wa" id="send" href="#" target="_blank" rel="noopener">Send on WhatsApp</a>
+    <p class="small">Or message us directly: <span id="num">+000 00 000 000</span>. By sending, you agree to our <a href="legal.html#privacy">privacy policy</a>.</p>
+  </form>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<footer>
+  <span>© 2026 Nisi Studio · Websites for small businesses in Cyprus</span>
+  <span><a href="#pricing">Pricing</a> · <a href="#faq">FAQ</a> · <a href="#demo">Free demo</a> · <a href="legal.html">Terms & privacy</a></span>
+</footer>
+</div>
+
+<a class="fab" id="fab" href="#" target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+const WA = "000000000000"; // put your WhatsApp number here, digits only, with country code
+const $ = id => document.getElementById(id);
+function update(){
+  const lines = ["Hi Nisi Studio! I'd like a free demo.",
+    `• Name: ${$("f-name").value}`,
+    `• Business: ${$("f-biz").value}`,
+    `• Type: ${$("f-type").value}`,
+    `• City: ${$("f-country").value}`,
+    `• Plan: ${$("f-plan").value}`];
+  if ($("f-link").value.trim()) lines.push(`• Page: ${$("f-link").value.trim()}`);
+  const text = lines.join("\n");
+  $("preview").textContent = text;
+  $("send").href = `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+}
+$("fab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hi Nisi Studio! I have a question about a website.")}`;
+document.querySelectorAll("[data-plan]").forEach(a => a.addEventListener("click", () => { $("f-plan").value = a.dataset.plan; update(); }));
+$("form").addEventListener("input", update);
+$("form").addEventListener("submit", e => e.preventDefault());
+update();
+</script>
+</body>
+</html>

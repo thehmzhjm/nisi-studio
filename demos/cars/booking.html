@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book a Car · Kyma Car Rentals</title>
+<meta name="description" content="Instant car rental price in Cyprus. Book on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="top">
+<div class="wrap">
+<div id="site-nav"></div>
+<div class="page-head">
+  <div class="crumb" data-i18n="bookCrumb"></div>
+  <h1 data-i18n="bookH1"></h1>
+  <p data-i18n="bookLead"></p>
+</div>
+</div>
+</div>
+
+<div class="quote-wrap">
+<div class="wrap">
+  <div class="quote">
+    <form class="qform" id="qform" novalidate>
+      <label><span data-i18n="fCar"></span><select id="f-car"></select></label>
+      <div class="row">
+        <label><span data-i18n="fFrom"></span><input type="date" id="f-from"></label>
+        <label><span data-i18n="fTo"></span><input type="date" id="f-to"></label>
+      </div>
+      <label><span data-i18n="fWhere"></span><select id="f-where"></select></label>
+      <div class="extras" id="extras"></div>
+      <div class="row">
+        <label><span data-i18n="fName"></span><input id="f-name" autocomplete="name" value="James Carter"></label>
+        <label><span data-i18n="fFlight"></span><input id="f-flight" value="BA662"></label>
+      </div>
+    </form>
+    <div class="receipt" id="receipt"></div>
+  </div>
+</div>
+</div>
+<main class="wrap" data-page="booking">
+  <section>
+    <div class="steps">
+      <div><em>01</em><b data-i18n="s1t"></b><p data-i18n="s1p"></p></div>
+      <div><em>02</em><b data-i18n="s2t"></b><p data-i18n="s2p"></p></div>
+      <div><em>03</em><b data-i18n="s3t"></b><p data-i18n="s3p"></p></div>
+    </div>
+  </section>
+  <footer class="site" id="site-footer"></footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
