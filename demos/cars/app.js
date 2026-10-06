@@ -3,11 +3,11 @@ const WA = "35799000000"; // company WhatsApp, digits only
 const PHONE = "+357 99 000 000";
 
 const cars = [
-  {id:"picanto", img:"picanto.jpg", n:"Kia Picanto", type:"mini", c:"#ff7a2f", cls:{en:"Mini",el:"Μίνι",ru:"Мини"}, low:24, high:36, seats:4, bags:1},
-  {id:"yaris", img:"yaris.jpg", n:"Toyota Yaris Hybrid", type:"sedan", c:"#1593ad", cls:{en:"Economy",el:"Οικονομικό",ru:"Эконом"}, low:32, high:45, seats:5, bags:2, best:true},
-  {id:"mini", img:"mini.jpg", n:"Mini Cooper Cabrio", type:"cabrio", c:"#e0b23b", cls:{en:"Convertible",el:"Κάμπριο",ru:"Кабриолет"}, low:59, high:85, seats:4, bags:1},
-  {id:"tucson", img:"tucson.jpg", n:"Hyundai Tucson", type:"suv", c:"#3c4b63", cls:{en:"SUV",el:"SUV",ru:"Кроссовер"}, low:49, high:69, seats:5, bags:4},
-  {id:"vito", img:"vito.jpg", n:"Mercedes Vito", type:"van", c:"#c9ced6", cls:{en:"9-seater",el:"9θέσιο",ru:"9 мест"}, low:79, high:110, seats:9, bags:6}
+  {id:"picanto", img:"1628066985203-d45e75825a90", n:"Kia Picanto", type:"mini", c:"#ff7a2f", cls:{en:"Mini",el:"Μίνι",ru:"Мини"}, low:24, high:36, seats:4, bags:1},
+  {id:"yaris", img:"1749058983469-11eaef8d7bc5", n:"Toyota Yaris", type:"sedan", c:"#1593ad", cls:{en:"Economy",el:"Οικονομικό",ru:"Эконом"}, low:32, high:45, seats:5, bags:2, best:true},
+  {id:"mini", img:"1790701105199-a92cd030cb17", n:"Mini Cooper Cabrio", type:"cabrio", c:"#e0b23b", cls:{en:"Convertible",el:"Κάμπριο",ru:"Кабриолет"}, low:59, high:85, seats:4, bags:1},
+  {id:"tucson", img:"1575090536203-2a6193126514", n:"Hyundai Tucson", type:"suv", c:"#3c4b63", cls:{en:"SUV",el:"SUV",ru:"Кроссовер"}, low:49, high:69, seats:5, bags:4},
+  {id:"vito", img:"1765461734605-34657fa04db2", n:"Mercedes Vito", type:"van", c:"#c9ced6", cls:{en:"9-seater",el:"9θέσιο",ru:"9 мест"}, low:79, high:110, seats:9, bags:6}
 ];
 const places = [
   {id:"lim", fee:0, n:{en:"Limassol, hotel delivery",el:"Λεμεσός, παράδοση στο ξενοδοχείο",ru:"Лимассол, доставка в отель"}},
@@ -207,15 +207,21 @@ function chrome(){
     <div><b>Kyma.</b><span data-i18n="fTag"></span></div>
     <div><b data-i18n="fPages"></b>${links.map(([id,href,k])=>`<a href="${href}" data-i18n="${k}"></a>`).join("")}</div>
     <div><b data-i18n="fContact"></b><span>WhatsApp ${PHONE}</span><br><span data-i18n="fHours"></span></div>
-    <div><b>© 2026 Kyma Car Rentals</b><span data-i18n="made"></span></div>`;
+    <div><b>© 2026 Kyma Car Rentals</b><span data-i18n="made"></span><br><span>Photos: Unsplash</span></div>`;
   const fab = document.createElement("a"); fab.className="fab"; fab.id="fab"; fab.target="_blank"; fab.rel="noopener"; fab.textContent="WhatsApp";
   document.body.appendChild(fab);
   $("burger").onclick = () => { const o = $("menu").classList.toggle("open"); $("burger").setAttribute("aria-expanded", o); };
   document.querySelectorAll(".langs button").forEach(b => b.onclick = () => setLang(b.dataset.lang));
 }
 
+function carImgFail(img, id){
+  const c = cars.find(x => x.id === id), pic = img.closest(".pic");
+  if(!c || !pic) return;
+  pic.classList.remove("photo");
+  img.outerHTML = carSVG(c.c, c.type);
+}
 function carCard(c, t, cta){
-  return `<article class="car"><div class="pic${c.img?" photo":""}"><span class="cls">${c.cls[lang]}${c.best?" · "+t.popular:""}</span>${c.img?`<img src="img/${c.img}" alt="${c.n}" width="900" height="600" loading="lazy">`:carSVG(c.c,c.type)}</div>
+  return `<article class="car"><div class="pic${c.img?" photo":""}"><span class="cls">${c.cls[lang]}${c.best?" · "+t.popular:""}</span>${c.img?`<img src="https://images.unsplash.com/photo-${c.img}?auto=format&fit=crop&w=900&h=600&q=72" alt="${c.n}" width="900" height="600" loading="lazy" onerror="carImgFail(this,'${c.id}')">`:carSVG(c.c,c.type)}</div>
     <div class="body"><h3>${c.n}</h3><p class="alt">${c.cls[lang]}</p>
     <div class="specs"><span>${c.seats} ${t.seats}</span><span>${c.bags} ${t.bags}</span><span>${t.auto}</span><span>${t.ac}</span></div></div>
     <div class="foot"><span class="rate"><small>${t.from} </small>€${c.low}<small>${t.day}</small></span><a class="pick" href="booking.html#${c.id}">${cta}</a></div></article>`;
