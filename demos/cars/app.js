@@ -3,11 +3,11 @@ const WA = "35799000000"; // company WhatsApp, digits only
 const PHONE = "+357 99 000 000";
 
 const cars = [
-  {id:"picanto", img:"1628066985203-d45e75825a90", n:"Kia Picanto", type:"mini", c:"#ff7a2f", cls:{en:"Mini",el:"Μίνι",ru:"Мини"}, low:24, high:36, seats:4, bags:1},
-  {id:"yaris", img:"1749058983469-11eaef8d7bc5", n:"Toyota Yaris", type:"sedan", c:"#1593ad", cls:{en:"Economy",el:"Οικονομικό",ru:"Эконом"}, low:32, high:45, seats:5, bags:2, best:true},
-  {id:"mini", img:"1790701105199-a92cd030cb17", n:"Mini Cooper Cabrio", type:"cabrio", c:"#e0b23b", cls:{en:"Convertible",el:"Κάμπριο",ru:"Кабриолет"}, low:59, high:85, seats:4, bags:1},
-  {id:"tucson", img:"1575090536203-2a6193126514", n:"Hyundai Tucson", type:"suv", c:"#3c4b63", cls:{en:"SUV",el:"SUV",ru:"Кроссовер"}, low:49, high:69, seats:5, bags:4},
-  {id:"vito", img:"1765461734605-34657fa04db2", n:"Mercedes Vito", type:"van", c:"#c9ced6", cls:{en:"9-seater",el:"9θέσιο",ru:"9 мест"}, low:79, high:110, seats:9, bags:6}
+  {id:"picanto", img:"https://images.pexels.com/photos/5952306/pexels-photo-5952306.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=600", n:"Kia Picanto", type:"mini", c:"#ff7a2f", cls:{en:"Mini",el:"Μίνι",ru:"Мини"}, low:24, high:36, seats:4, bags:1},
+  {id:"yaris", img:"https://images.unsplash.com/photo-1749058983469-11eaef8d7bc5?auto=format&fit=crop&w=900&h=600&q=72", n:"Toyota Yaris", type:"sedan", c:"#1593ad", cls:{en:"Economy",el:"Οικονομικό",ru:"Эконом"}, low:32, high:45, seats:5, bags:2, best:true},
+  {id:"mini", img:"https://images.unsplash.com/photo-1790701105199-a92cd030cb17?auto=format&fit=crop&w=900&h=600&q=72", n:"Mini Cooper Cabrio", type:"cabrio", c:"#e0b23b", cls:{en:"Convertible",el:"Κάμπριο",ru:"Кабриолет"}, low:59, high:85, seats:4, bags:1},
+  {id:"tucson", img:"https://images.unsplash.com/photo-1575090536203-2a6193126514?auto=format&fit=crop&w=900&h=600&q=72", n:"Hyundai Tucson", type:"suv", c:"#3c4b63", cls:{en:"SUV",el:"SUV",ru:"Кроссовер"}, low:49, high:69, seats:5, bags:4},
+  {id:"vito", img:"https://images.pexels.com/photos/17455625/pexels-photo-17455625.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=600", n:"Mercedes Vito", type:"van", c:"#c9ced6", cls:{en:"9-seater",el:"9θέσιο",ru:"9 мест"}, low:79, high:110, seats:9, bags:6}
 ];
 const places = [
   {id:"lim", fee:0, n:{en:"Limassol, hotel delivery",el:"Λεμεσός, παράδοση στο ξενοδοχείο",ru:"Лимассол, доставка в отель"}},
@@ -207,7 +207,7 @@ function chrome(){
     <div><b>Kyma.</b><span data-i18n="fTag"></span></div>
     <div><b data-i18n="fPages"></b>${links.map(([id,href,k])=>`<a href="${href}" data-i18n="${k}"></a>`).join("")}</div>
     <div><b data-i18n="fContact"></b><span>WhatsApp ${PHONE}</span><br><span data-i18n="fHours"></span></div>
-    <div><b>© 2026 Kyma Car Rentals</b><span data-i18n="made"></span><br><span>Photos: Unsplash</span></div>`;
+    <div><b>© 2026 Kyma Car Rentals</b><span data-i18n="made"></span><br><span>Photos: Unsplash, Pexels</span></div>`;
   const fab = document.createElement("a"); fab.className="fab"; fab.id="fab"; fab.target="_blank"; fab.rel="noopener"; fab.textContent="WhatsApp";
   document.body.appendChild(fab);
   $("burger").onclick = () => { const o = $("menu").classList.toggle("open"); $("burger").setAttribute("aria-expanded", o); };
@@ -221,7 +221,7 @@ function carImgFail(img, id){
   img.outerHTML = carSVG(c.c, c.type);
 }
 function carCard(c, t, cta){
-  return `<article class="car"><div class="pic${c.img?" photo":""}"><span class="cls">${c.cls[lang]}${c.best?" · "+t.popular:""}</span>${c.img?`<img src="https://images.unsplash.com/photo-${c.img}?auto=format&fit=crop&w=900&h=600&q=72" alt="${c.n}" width="900" height="600" loading="lazy" onerror="carImgFail(this,'${c.id}')">`:carSVG(c.c,c.type)}</div>
+  return `<article class="car"><div class="pic${c.img?" photo":""}"><span class="cls">${c.cls[lang]}${c.best?" · "+t.popular:""}</span>${c.img?`<img src="${c.img}" alt="${c.n}" width="900" height="600" loading="lazy" onerror="carImgFail(this,'${c.id}')">`:carSVG(c.c,c.type)}</div>
     <div class="body"><h3>${c.n}</h3><p class="alt">${c.cls[lang]}</p>
     <div class="specs"><span>${c.seats} ${t.seats}</span><span>${c.bags} ${t.bags}</span><span>${t.auto}</span><span>${t.ac}</span></div></div>
     <div class="foot"><span class="rate"><small>${t.from} </small>€${c.low}<small>${t.day}</small></span><a class="pick" href="booking.html#${c.id}">${cta}</a></div></article>`;
